@@ -1,39 +1,38 @@
 "use client";
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "./Navbar";
 
-
 const Nabarin: React.FC = () => {
+  useEffect(() => {
+    const debounce = (fn: any) => {
+      let frame: number;
 
-    useEffect(() => {
-        const debounce = (fn: any) => {
-            let frame: number;
+      return (...params: any[]) => {
+        if (frame) {
+          cancelAnimationFrame(frame);
+        }
+        frame = requestAnimationFrame(() => {
+          fn(...params);
+        });
+      };
+    };
 
-            return (...params: any[]) => {
-                if (frame) {
-                    cancelAnimationFrame(frame);
-                }
-                frame = requestAnimationFrame(() => {
-                    fn(...params);
-                });
-            }
-        };
+    const storeScoll = () => {
+      document.documentElement.dataset.scroll = window.scrollY.toString();
+    };
 
-        const storeScoll = () => {
-            document.documentElement.dataset.scroll = window.scrollY.toString();
-        };
+    document.addEventListener("scroll", debounce(storeScoll), {
+      passive: true,
+    });
 
-        document.addEventListener('scroll', debounce(storeScoll), { passive: true });
+    storeScoll();
+  }, []);
 
-        storeScoll();
-    }, [])
-
-    return (
-        <>
-            <Navbar />
-        </>
-    )
-}
-
+  return (
+    <>
+      <Navbar />
+    </>
+  );
+};
 
 export default Nabarin;

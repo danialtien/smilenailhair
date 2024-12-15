@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import { Disclosure } from '@headlessui/react';
 
-
 interface NavigationItem {
     name: string;
     href: string;
@@ -24,8 +23,7 @@ function classNames(...classes: string[]) {
 }
 
 const Navbar = () => {
-
-    const [isOpen, setIsOpen] = React.useState(false);
+    // const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <Disclosure as="nav" className="navbar web-header">
