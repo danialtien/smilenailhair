@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Transactions () {
+export default function Transactions() {
   return (
     <div className="bg-slate-100 p-5 rounded-lg">
       <h2 className="mb-5 font-extralight">Latest Transactions</h2>
@@ -28,7 +28,7 @@ export default function Transactions () {
               </div>
             </td>
             <td>
-              <span className="rounded p-1.5 text-sm text-white bg-yellow-600">
+              <span className="rounded p-1.5 text-sm text-yellow-900 bg-yellow-400">
                 Pending
               </span>
             </td>
@@ -49,7 +49,7 @@ export default function Transactions () {
               </div>
             </td>
             <td>
-              <span className="rounded p-1.5 text-sm text-white bg-lime-600">Done</span>
+              <span className="rounded p-1.5 text-sm text-lime-900 bg-lime-400">Done</span>
             </td>
             <td>14.02.2024</td>
             <td>$3.200</td>
@@ -68,7 +68,7 @@ export default function Transactions () {
               </div>
             </td>
             <td>
-              <span className="rounded p-1.5 text-sm text-white bg-red-600">
+              <span className="rounded p-1.5 text-sm text-red-900 bg-red-400">
                 Cancelled
               </span>
             </td>
@@ -89,7 +89,7 @@ export default function Transactions () {
               </div>
             </td>
             <td>
-              <span className="rounded p-1.5 text-sm text-white bg-yellow-600">
+              <span className="rounded p-1.5 text-sm text-yellow-900 bg-yellow-400">
                 Pending
               </span>
             </td>

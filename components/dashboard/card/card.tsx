@@ -2,12 +2,12 @@ import { MdSupervisedUserCircle } from "react-icons/md";
 import { ICard } from "@/model/data";
 
 interface ICardProps {
-    item: ICard;
+  item: ICard;
 }
 
 export default function Card({ item }: ICardProps) {
   return (
-    <div className="bg-orange-200 p-5 rounded-lg flex gap-5 cursor-pointer w-full hover:bg-rose-400">
+    <div className="bg-orange-200 p-5 rounded-lg flex gap-5 cursor-pointer w-full hover:bg-pink-200">
       <MdSupervisedUserCircle size={24} />
       <div className="flex flex-col gap-5">
         <span className="text-3xl font-medium">{item.title}</span>

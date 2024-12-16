@@ -17,7 +17,7 @@ export default function ProductsPage() {
         </Link>
       </div>
       <div className="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10 mt-5">
-        <table className="w-full table table-fixed">
+        <table className="table table-fixed w-full">
           <thead>
             <tr className="bg-slate-200">
               <td className="w-1/4 text-left text-gray-600 font-bold uppercase">
@@ -42,7 +42,10 @@ export default function ProductsPage() {
           </thead>
           <tbody className="bg-white">
             {products.map((product) => (
-              <tr key={product.id} className="border-b border-slate-200 hover:bg-orange-100">
+              <tr
+                key={product.id}
+                className="border-b border-slate-200 hover:bg-orange-100"
+              >
                 <td className="py-4 px-6">
                   <div className="flex items-center gap-2.5">
                     <Image
@@ -57,7 +60,9 @@ export default function ProductsPage() {
                 </td>
                 <td className="py-4 px-6">{product.desc}</td>
                 <td className="py-4 px-6">${product.price}</td>
-                <td className="py-4 px-6">{product.createdAt?.toString().slice(4, 16)}</td>
+                <td className="py-4 px-6">
+                  {product.createdAt?.toString().slice(4, 16)}
+                </td>
                 <td className="py-4 px-6">{product.stock}</td>
                 <td className="py-4 px-6">
                   <div className="flex gap-2.5">

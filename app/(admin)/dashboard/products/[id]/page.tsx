@@ -16,9 +16,9 @@ export default function SingleProductPage() {
           <input type="text" name="title" placeholder="Product A" className="p-5 rounded border-2 border-solid border-yellow-700 bg-background text-foreground mx-2" />
           <label className="text-sm">Price</label>
           <input type="number" name="price" placeholder="10$" className="p-5 rounded border-2 border-solid border-yellow-700 bg-background text-foreground mx-2" />
-          <label  className="text-sm">Stock</label>
+          <label className="text-sm">Stock</label>
           <input type="number" name="stock" placeholder="99" className="p-5 rounded border-2 border-solid border-yellow-700 bg-background text-foreground mx-2" />
-          <label  className="text-sm">Color</label>
+          <label className="text-sm">Color</label>
           <input
             type="text"
             name="color"
@@ -26,7 +26,7 @@ export default function SingleProductPage() {
             className="p-5 rounded border-2 border-solid border-yellow-700 bg-background text-foreground mx-2"
           />
           <label className="text-sm">Size</label>
-          <textarea 
+          <textarea
             name="size"
             placeholder="size"
             className="p-5 rounded border-2 border-solid border-yellow-700 bg-background text-foreground mx-2"
