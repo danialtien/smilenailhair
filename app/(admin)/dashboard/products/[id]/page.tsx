@@ -5,7 +5,7 @@ export default function SingleProductPage() {
     <div className="flex gap-7 mt-5">
       <div className="w-2/12 bg-btn-light p-5 rounded font-bold text-yellow-700 h-max">
         <div className="w-full h-[300px] relative rounded overflow-hidden mb-5">
-          <Image src="/noavatar.png" alt="" fill />
+          <Image src="/images/Dashboard/noavatar.png" alt="" fill />
         </div>
         Product A
       </div>

@@ -6,6 +6,7 @@ interface CountProps {
 }
 
 export default function Pagination({ count }: CountProps) {
+  console.log(count);
   // const searchParams = useSearchParams();
   // const { replace } = useRouter();
   // const pathname = usePathname();

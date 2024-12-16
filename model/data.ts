@@ -1,3 +1,56 @@
+export interface IUser {
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  img: string;
+  isAdmin: boolean;
+  isActive: boolean;
+  phone: string;
+  address: string;
+  createdAt: Date;
+}
+
+export const user: IUser = {
+    id: 1,
+    username: "Admin",
+    email: "admin@gmail.com",
+    password: "123456",
+    img: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+    isAdmin: true,
+    isActive: true,
+    phone: "0978563518",
+    address: "Nhà cái đến từ châu Âu",
+    createdAt: new Date()
+};
+
+export const users: IUser[] = [
+  {
+    id: 1,
+    username: "Admin",
+    email: "admin@gmail.com",
+    password: "123456",
+    img: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+    isAdmin: true,
+    isActive: true,
+    phone: "0978563518",
+    address: "Nhà cái đến từ châu Âu",
+    createdAt: new Date()
+  },
+  {
+    id: 2,
+    username: "User A",
+    email: "userA@gmail.com",
+    password: "123456",
+    img: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+    isAdmin: false,
+    isActive: true,
+    phone: "0978563518",
+    address: "Nhà cái đến từ châu Âu",
+    createdAt: new Date()
+  },
+];
+
 export interface ICard {
   id: number;
   title: string;
