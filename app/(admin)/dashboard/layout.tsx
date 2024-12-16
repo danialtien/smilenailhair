@@ -1,4 +1,4 @@
-import Footer from "@/components/dashboard/footer/footer";
+import Footer from "@/components/footer/footer";
 import Navbar from "@/components/dashboard/navbar/navbar";
 import Sidebar from "@/components/dashboard/sidebar/sidebar";
 
@@ -11,7 +11,6 @@ export default function Layout({children} : Readonly<{children: React.ReactNode}
             <div className="flex flex-col w-10/12 p-5">
                 <Navbar />
                 {children}
-                <Footer />
             </div>
         </div>
     );
