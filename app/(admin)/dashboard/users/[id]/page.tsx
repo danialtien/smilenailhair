@@ -7,7 +7,7 @@ export default function SingleUserPage() {
     <div className="flex gap-12 mt-5">
       <div className="w-2/12 bg-slate-100 p-5 rounded font-bold text-yellow-700 h-max">
         <div className="w-full h-[300px] relative rounded overflow-hidden mb-5">
-          <Image src={user.img || "/noavatar.png"} alt="" fill />
+          <Image src={user.img || "/images/Dashboard/noavatar.png"} alt="" fill />
         </div>
         {user.username}
       </div>
@@ -17,15 +17,13 @@ export default function SingleUserPage() {
             type="hidden"
             name="id"
             value={user.id}
-            className="p-5 border-2 border-solid border-[#2e374a] rounded bg-btn-light text-foreground mx-2"
           />
           <label className="text-xs font-bold">Username</label>
           <input
             type="text"
             name="username"
             placeholder={user.username}
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2"
-          />
+            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2" />
           <label className="text-xs font-bold">Email</label>
           <input
             type="email"

@@ -12,7 +12,7 @@ export default function Footer() {
         />
         <p className="text-base mt-2">Chỗ này để ghi chú/slogan cửa hàng/chi nhánh các thứ...</p>
       </div>
-      <div className="w-full flex-col ml-5">
+      <div className="flex-col ml-5">
         <div className="mb-5">
           <a
             href="tel:+84377216836"
