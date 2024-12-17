@@ -32,7 +32,7 @@ const Navbar = () => {
           <div className="relative flex h-12 sm:h-20 items-center">
             <div className="flex flex-1 items-center sm:justify-between">
               {/* Logo */}
-              <div className="">
+              <div className="flex sm:hidden flex-shrink-0 items-center border-right">
                 <Image
                   src="/images/Logo/SmileNailHairLogo.png"
                   alt="Logo"
@@ -88,4 +88,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
