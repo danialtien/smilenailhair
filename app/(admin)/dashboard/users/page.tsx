@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
+import { PiPlusCircleBold } from "react-icons/pi";
 
 import { users } from "@/model/data";
-import { PiPlusCircleBold } from "react-icons/pi";
 
 export default function UsersPage() {
   return (
@@ -12,7 +12,7 @@ export default function UsersPage() {
       <div className="flex items-center justify-between">
         <Search placeholder="Search for a user..." />
         <Link href="/dashboard/users/add">
-          <button className="flex items-center gap-1 p-2.5 bg-btn-light text-yellow-700 font-medium border-none rounded cursor-pointer">
+          <button className="flex items-center gap-1 p-2.5 bg-btn-light text-yellow-700 font-medium border-none rounded cursor-pointer hover:bg-yellow-700 hover:text-yellow-100">
             <PiPlusCircleBold />
             Add New
           </button>

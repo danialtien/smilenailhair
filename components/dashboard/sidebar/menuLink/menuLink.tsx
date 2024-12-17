@@ -13,11 +13,10 @@ export default function MenuLink({ item }: MenuLinkProps) {
   return (
     <Link
       href={item.path}
-      className={`flex p-5 items-center gap-2.5 my-1 rounded-lg hover:bg-orange-100 ${pathname === item.path && "bg-orange-100"}`}
+      className={`flex p-5 items-center gap-2.5 my-1 rounded-lg hover:bg-orange-100 space-links ${pathname === item.path && "bg-orange-100"}`}
     >
       {item.icon}
       {item.title}
     </Link>
   );
 }
-

@@ -110,7 +110,9 @@ export default function Sidebar() {
       <ul className="list-none">
         {menuItems.map((items) => (
           <li key={items.title}>
-            <span className="text-yellow-700 font-bold font-sm my-2.5">{items.title}</span>
+            <span className="text-yellow-700 font-bold font-sm my-2.5">
+              {items.title}
+            </span>
             {items.list.map((item) => (
               <MenuLink item={item} key={item.title} />
             ))}
@@ -118,16 +120,17 @@ export default function Sidebar() {
         ))}
       </ul>
       <form
-        // action={async () => {
-        //   "use server";
-        //   await signOut();
-        // }}
+      // action={async () => {
+      //   "use server";
+      //   await signOut();
+      // }}
       >
-        <button className="p-5 my-1.25 flex items-center gap-2.5 cursor-pointer rounded-lg bg-none border-none rounded-lg text-red-700 font-semibold w-full hover:bg-orange-100">
+        <button className="p-5 my-1.25 flex items-center gap-2.5 cursor-pointer rounded-lg bg-none border-none text-red-700 font-semibold w-full hover:bg-orange-100 space-links">
           <MdLogout />
           Logout
         </button>
       </form>
     </div>
   );
-};
+}
+

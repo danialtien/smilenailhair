@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Search from "@/components/dashboard/search/search";
 import Pagination from "@/components/dashboard/pagination/pagination";
+import { PiPlusCircleBold } from "react-icons/pi";
 
 import { products } from "@/model/data";
 
@@ -11,7 +12,8 @@ export default function ProductsPage() {
       <div className="flex items-center justify-between">
         <Search placeholder="Search for a product..." />
         <Link href="/dashboard/products/add">
-          <button className="p-2.5 bg-btn-light text-rose-700 font-medium border-none rounded cursor-pointer hover:bg-yellow-700 hover:text-rose-100">
+          <button className="flex items-center gap-1 p-2.5 bg-btn-light text-yellow-700 font-medium border-none rounded cursor-pointer hover:bg-yellow-700 hover:text-yellow-100">
+            <PiPlusCircleBold />
             Add New
           </button>
         </Link>
