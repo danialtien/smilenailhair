@@ -1,10 +1,11 @@
 "use client";
 import { useEffect } from "react";
+
 import Navbar from "./Navbar";
 
 const Nabarin: React.FC = () => {
   useEffect(() => {
-    const debounce = (fn: any) => {
+    const debounce = (fn: Function) => {
       let frame: number;
 
       return (...params: any[]) => {
