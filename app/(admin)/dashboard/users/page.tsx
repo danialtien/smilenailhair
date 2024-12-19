@@ -8,7 +8,7 @@ import { users } from "@/model/data";
 
 export default function UsersPage() {
   return (
-    <div className="bg-slate-100 p-5 rounded mt-5">
+    <div className="p-5 rounded mt-5">
       <div className="flex items-center justify-between">
         <Search placeholder="Search for a user..." />
         <Link href="/dashboard/users/add">
@@ -18,7 +18,10 @@ export default function UsersPage() {
           </button>
         </Link>
       </div>
-      <div className="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10 mt-5">
+
+      {/* Role Tabs: Admin || Manager || Client */}
+
+      <div className="w-full rounded-lg overflow-hidden mt-5">
         <table className="table table-fixed w-full">
           <thead>
             <tr className="bg-slate-200">
@@ -51,7 +54,7 @@ export default function UsersPage() {
                 <td className="py-4 px-6">
                   <div className="flex items-center gap-2.5">
                     <Image
-                      src={user.img || "/noavatar.png"}
+                      src={user.img || "/images/Dashboard/noavatar.png"}
                       alt=""
                       width={40}
                       height={40}

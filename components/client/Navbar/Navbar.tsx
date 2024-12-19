@@ -86,7 +86,7 @@ const Navbar = () => {
                   <p className="text-lg font-medium">+1(909) 235-9814</p>
                 </div>
                 <Link href="../../../sign-in">
-                  <button className="flex justify-end text-xl font-semibold bg-pink-100 text-pink-500 py-4 px-4 lg:px-8 navbutton rounded-full hover:bg-pink-300">
+                  <button className="flex justify-end text-xl font-semibold bg-pink-200 py-4 px-4 lg:px-8 navbutton rounded-full hover:bg-pink-300">
                     Sign in
                   </button>
                 </Link>
