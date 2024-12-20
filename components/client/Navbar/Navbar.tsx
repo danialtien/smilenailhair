@@ -11,11 +11,11 @@ interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-  { name: "Home", href: "/", current: true },
-  { name: "Services", href: "/services", current: false },
-  { name: "Booking Now", href: "/booking-now", current: false },
-  { name: "Gallery", href: "/gallery", current: false },
-  { name: "Contact", href: "/contact", current: false },
+  { name: "Home", href: "/customer/home", current: true },
+  { name: "Services", href: "/customer/services", current: false },
+  { name: "Booking Now", href: "/customer/booking-now", current: false },
+  { name: "Gallery", href: "/customer/gallery", current: false },
+  { name: "Contact", href: "/customer/contact", current: false },
 ];
 
 function classNames(...classes: string[]) {
