@@ -27,22 +27,39 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
-const formSchema = z.object({
+const FormSchema = z.object({
   userName: z.string().min(2).max(50),
+  country: z
+    .string({
+      required_error: "Please select your country",
+    })
+    .email(),
 });
 
 export default function BookingPage() {
-  // formSchema
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { toast } = useToast();
+
+  // FormSchema
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       userName: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  function onSubmit(values: z.infer<typeof FormSchema>) {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-50 p-4">
+          <code className="text-pink-900">
+            {JSON.stringify(values, null, 2)}
+          </code>
+        </pre>
+      ),
+    });
   }
 
   return (
@@ -77,65 +94,67 @@ export default function BookingPage() {
       <Card className="w-2/5 p-5 bg-amber-50">
         <CardTitle className="mt-2">Appointment</CardTitle>
         <CardDescription>Working time: 08:00 - 20:00</CardDescription>
-        <CardContent className="p-5">
+        <CardContent className="p-5 space-y-6">
           <Form {...form}>
-            <FormDescription>Note</FormDescription>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormDescription className="text-pink-600 font-bold border-b border-pink-600">
+              Please enter some information below
+            </FormDescription>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
                 name="userName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input placeholder="shadcn" {...field} />
-                    </FormControl>
                     <FormDescription>
                       This is your public display name.
                     </FormDescription>
+                    <FormControl>
+                      <Input
+                        placeholder="Fill your name here"
+                        {...field}
+                        className="bg-amber-100 border-amber-600"
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Country</FormLabel>
+                    <FormDescription>Select your country</FormDescription>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger
+                          id="framework"
+                          className="bg-amber-100 border border-amber-600 rounded p-2"
+                        >
+                          <SelectValue placeholder="Select your country" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent position="popper">
+                        <SelectItem value="next">Next.js</SelectItem>
+                        <SelectItem value="sveltekit">SvelteKit</SelectItem>
+                        <SelectItem value="astro">Astro</SelectItem>
+                        <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button variant="outline" type="submit">
+                Submit
+              </Button>
             </form>
           </Form>
-          <form>
-            <p className="text-sm font-bold text-pink-600 border-b border-pink-600 mb-2">
-              Please enter some information below
-            </p>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col">
-                <label htmlFor="name" className="font-semibold">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  placeholder="Name of your project"
-                  className="bg-amber-100 border border-amber-600 rounded p-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="framework" className="font-semibold">
-                  Framework
-                </label>
-                <Select>
-                  <SelectTrigger
-                    id="framework"
-                    className="bg-amber-100 border border-amber-600 rounded p-2"
-                  >
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="next">Next.js</SelectItem>
-                    <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                    <SelectItem value="astro">Astro</SelectItem>
-                    <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </form>
         </CardContent>
       </Card>
     </main>
