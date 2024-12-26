@@ -8,12 +8,12 @@ import { users } from "@/model/data";
 
 export default function UsersPage() {
   return (
-    <div className="p-5 rounded mt-5">
+    <div className="bg-orange-50 p-5 mt-5 rounded">
       <div className="flex items-center justify-between">
-        <Search placeholder="Search for a user..." />
+        <Search placeholder="Search for a user..."/>
         <Link href="/dashboard/users/add">
-          <button className="flex items-center gap-1 p-2.5 bg-btn-light text-yellow-700 font-medium border-none rounded cursor-pointer hover:bg-yellow-700 hover:text-yellow-100">
-            <PiPlusCircleBold />
+          <button className="flex items-center gap-1 p-2.5 bg-rose-50 text-rose-500 font-semibold rounded-lg border border-rose-500 shadow cursor-pointer hover:bg-rose-500 hover:text-yellow-50">
+            <PiPlusCircleBold size={24} />
             Add New
           </button>
         </Link>
@@ -21,10 +21,10 @@ export default function UsersPage() {
 
       {/* Role Tabs: Admin || Manager || Client */}
 
-      <div className="w-full rounded-lg overflow-hidden mt-5">
+      <div className="w-full shadow-lg rounded-lg overflow-hidden mt-5">
         <table className="table table-fixed w-full">
           <thead>
-            <tr className="bg-slate-200">
+            <tr className="bg-amber-200">
               <td className="w-1/4 text-left text-gray-600 font-bold uppercase">
                 Name
               </td>
@@ -49,7 +49,7 @@ export default function UsersPage() {
             {users.map((user) => (
               <tr
                 key={user.id}
-                className="border-b border-slate-200 hover:bg-orange-100"
+                className="border-b border-amber-200 hover:bg-orange-100 odd:bg-yellow-50 even:bg-yellow-100"
               >
                 <td className="py-4 px-6">
                   <div className="flex items-center gap-2.5">
@@ -92,7 +92,7 @@ export default function UsersPage() {
             ))}
           </tbody>
         </table>
-        <div className="flex bg-white justify-center py-4">
+        <div className="flex bg-transparent justify-center py-4">
           <Pagination count={2} />
         </div>
       </div>

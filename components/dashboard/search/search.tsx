@@ -26,12 +26,12 @@ export default function Search({ placeholder } : SearchProps) {
   // }, 300);
 
   return (
-    <div className="flex items-center gap-2.5 p-2.5 bg-placeholder rounded w-max">
-      <MdSearch />
+    <div className="flex items-center px-3.5 py-2 bg-brown-50 rounded-lg w-full max-w-sm space-x-2 border border-orange-300 shadow">
+      <MdSearch className="h-5 w-5" />
       <input
-        type="text"
+        type="search"
         placeholder={placeholder}
-        className="bg-transparent border-none text-foreground outline-none"
+        className="w-full px-1 border-none bg-transparent"
         // onChange={handleSearch}
       />
     </div>
