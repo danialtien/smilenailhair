@@ -26,7 +26,7 @@ const Navbar = () => {
   // const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Disclosure as="nav" className="navbar web-header">
+    <Disclosure as="nav" className="navbar bg-base">
       <>
         <div className="mx-auto max-w-7xl p-3 md:p-6 lg:px-8">
           <div className="relative flex h-12 sm:h-20 items-center">

@@ -23,39 +23,39 @@ export default function SingleUserPage() {
             type="text"
             name="username"
             placeholder={user.username}
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2" />
+            className="p-2 mb-2 border border-solid border-orange-300 rounded bg-brown-50 text-foreground mx-2" />
           <label className="text-xs font-bold">Email</label>
           <input
             type="email"
             name="email"
             placeholder={user.email}
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2"
+            className="p-2 mb-2 border border-solid border-orange-300 rounded bg-brown-50 text-foreground mx-2"
           />
           <label className="text-xs font-bold">Password</label>
           <input
             type="password"
             name="password"
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2"
+            className="p-2 mb-2 border border-solid border-orange-300 rounded bg-brown-50 text-foreground mx-2"
           />
           <label className="text-xs font-bold">Phone</label>
           <input
             type="text"
             name="phone"
             placeholder={user.phone}
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2"
+            className="p-2 mb-2 border border-solid border-orange-300 rounded bg-brown-50 text-foreground mx-2"
           />
           <label className="text-xs font-bold">Address</label>
           <input
             type="text"
             name="address"
             placeholder={user.address}
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2"
+            className="p-2 mb-2 border border-solid border-orange-300 rounded bg-brown-50 text-foreground mx-2"
           />
           <label className="text-xs font-bold">Is Admin?</label>
           <select
             name="isAdmin"
             id="isAdmin"
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2"
+            className="p-2 mb-2 border border-solid border-orange-300 rounded bg-brown-50 text-foreground mx-2"
           >
             <option selected={user.isAdmin}>Yes</option>
             <option selected={!user.isAdmin}>No</option>
@@ -64,12 +64,12 @@ export default function SingleUserPage() {
           <select
             name="isActive"
             id="isActive"
-            className="p-2 mb-2 border-2 border-solid border-yellow-700 rounded bg-placeholder text-foreground mx-2"
+            className="p-2 mb-2 border border-solid border-orange-300 rounded bg-brown-50 text-foreground mx-2"
           >
             <option selected={user.isActive}>Yes</option>
             <option selected={!user.isActive}>No</option>
           </select>
-          <button className="w-full p-2 bg-btn-light text-yellow-900 border-none rounded cursor-pointer mt-5">
+          <button className="w-full p-2 bg-brown-100 text-yellow-900 border-none rounded cursor-pointer mt-5 hover:bg-orange-100 hover:text-orange-700">
             Update
           </button>
         </form>

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function LoginPage() {
   return (
-    <div className="box-border flex items-center justify-center min-h-screen bg-btn-light">
+    <div className="box-border flex items-center justify-center min-h-screen bg-brown-100">
       <section className="absolute w-screen h-screen bg-[#d7c1a7] flex flex-wrap items-center justify-center gap-0.5 overflow-hidden signInSection">
         {[...Array(259)].map((_, index) => (
           <span key={index} className="signInSpan"></span>

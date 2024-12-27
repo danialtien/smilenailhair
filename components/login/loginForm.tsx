@@ -14,7 +14,7 @@ export default function LoginForm() {
         name="password"
         className="w-full p-5 rounded border-2 border-solid border-[#d7c1a7] bg-background text-foreground"
       />
-      <button className="w-full p-5 bg-[#dbd1c5] text-foreground font-medium border-none cursor-pointer rounded hover:bg-[#d7c1a7]">
+      <button className="w-full p-5 bg-brown-200 text-foreground font-medium border-none cursor-pointer rounded hover:bg-orange-200 hover:text-orange-700">
         Login
       </button>
     </form>
