@@ -52,6 +52,8 @@ const Navbar = () => {
                     alt="Logo"
                     width={120}
                     height={120}
+                    priority={false}
+                    className="w-[120px] h-[120px]"
                   />
                 </Link>
               </div>

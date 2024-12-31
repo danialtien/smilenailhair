@@ -24,7 +24,7 @@ export default function MultistepFormContextProvider({
   children: ReactNode;
 }) {
   const initialFormData: InputBookingServiceData = {
-    id: bookingService[bookingService.length - 1].id++,
+    id: bookingService[bookingService.length - 1].id,
     serviceName: "",
     duration: 5,
     numOfAttending: 1,

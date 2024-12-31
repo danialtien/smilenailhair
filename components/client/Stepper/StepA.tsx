@@ -78,14 +78,8 @@ export default function StepA({ formData, handleNextStep }: Props) {
             </Button>
           </form>
         </Form>
+        <Button onClick={() => handleNextStep}>Test</Button>
       </CardContent>
     </Card>
   );
-}
-
-// Select template
-{
-  /*
-;
-*/
 }

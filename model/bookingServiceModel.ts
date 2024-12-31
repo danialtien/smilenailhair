@@ -8,6 +8,7 @@ export interface IBookingService {
   apointmentDate: Date; // Lịch hẹn
   technician: string; // Chọn thợ làm nail
   note: string;
+  [key: string]: any
 }
 
 export const bookingService: IBookingService[] = [

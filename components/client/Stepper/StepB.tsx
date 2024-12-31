@@ -57,7 +57,7 @@ export default function StepB({
                 <FormItem>
                   <FormLabel>Duration</FormLabel>
                   <Select
-                    onValueChange={field.onChange}
+                    onValueChange={(value) => parseInt(value) && field.onChange}
                     defaultValue={field.value.toString()}
                   >
                     <FormControl>
@@ -86,9 +86,11 @@ export default function StepB({
                   <FormLabel>Attending number</FormLabel>
                   <FormControl>
                     <Input
-                      type="number"
-                      placeholder="Enter your attending number..."
                       {...field}
+                      type="number"
+                      inputMode="decimal"
+                      onChange={(e) => formData.setValue("numOfAttending", parseInt(e.target.value))}
+                      placeholder="Enter your attending number..."
                       className="bg-amber-100 border-amber-600"
                     />
                   </FormControl>

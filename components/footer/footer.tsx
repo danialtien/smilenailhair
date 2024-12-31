@@ -11,6 +11,8 @@ export default function Footer() {
             alt=""
             width={300}
             height={300}
+            priority={false}
+            className="w-[300px] h-[300px]"
           />
           <p className="text-base mt-2">
             Chỗ này để ghi chú/slogan cửa hàng/chi nhánh các thứ...

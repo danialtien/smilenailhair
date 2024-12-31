@@ -1,15 +1,12 @@
 "use client";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import StepA from "./StepA";
 import StepB from "./StepB";
 import StepC from "./StepC";
-import StepD from "./StepD";
 import StepFinal from "./StepFinal";
-import { MdOfflinePin } from "react-icons/md";
 import { useMultistepFormContext } from "@/app/(client)/customer/booking-now/multistep-form-context";
 import {
   InputBookingServiceData,
@@ -26,11 +23,19 @@ export default function Stepper() {
   const [step, setStep] = useState(stepA);
 
   // Form steup
-  const { formData, updateFormData } = useMultistepFormContext();
+  const { formData, updateFormData, clearFormData } = useMultistepFormContext();
   const form = useForm({
     resolver: zodResolver(inputBookingServiceSchema),
-    defaultValues: formData,
+    defaultValues: {
+      ...formData,
+      id: ++formData.id
+    },
   });
+
+  useEffect(() => {
+    console.log("Current step: "+ step);
+    clearFormData();
+  }, [])
 
   function handleNextStep(data: Partial<InputBookingServiceData>) {
     updateFormData(data);
@@ -39,12 +44,14 @@ export default function Stepper() {
     } else if (step === stepB) {
       setStep(stepC);
     }
+    console.log("step: "+ step);
   }
 
   function handlePrevStep(data: Partial<InputBookingServiceData>) {
     updateFormData(data);
     if (step === stepC) setStep(stepB);
     else if (step === stepB) setStep(stepA);
+    console.log("step: "+ step);
   }
 
   // We need a method to update our formData
@@ -74,6 +81,7 @@ export default function Stepper() {
         </pre>
       ),
     });
+    clearFormData();
   }
 
   function renderTopStep() {
@@ -132,3 +140,4 @@ export default function Stepper() {
     </div>
   );
 }
+"https://github.com/eduardogomesf/multi-step-form"

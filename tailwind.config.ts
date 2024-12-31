@@ -10,9 +10,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        base: "hsl(var(--base))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        base: "var(--base)",
         brown: {
           50: "#efebe9",
           100: "#d7ccc8",

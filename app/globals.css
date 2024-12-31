@@ -32,7 +32,7 @@ a {
 
 @layer base {
   :root {
-    --base: #d7c1a7;
+    --base: 32, 38%, 75%;
     --radius: 0.5rem;
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -68,7 +68,7 @@ a {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --base: #d7c1a7;
+    --base: 32, 38%, 75%;
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
