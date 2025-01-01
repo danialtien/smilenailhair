@@ -28,14 +28,14 @@ export default function Stepper() {
     resolver: zodResolver(inputBookingServiceSchema),
     defaultValues: {
       ...formData,
-      id: ++formData.id
+      id: ++formData.id,
     },
   });
 
   useEffect(() => {
-    console.log("Current step: "+ step);
+    console.log("Current step: " + step);
     clearFormData();
-  }, [])
+  }, []);
 
   function handleNextStep(data: Partial<InputBookingServiceData>) {
     updateFormData(data);
@@ -44,14 +44,14 @@ export default function Stepper() {
     } else if (step === stepB) {
       setStep(stepC);
     }
-    console.log("step: "+ step);
+    console.log("step: " + step);
   }
 
   function handlePrevStep(data: Partial<InputBookingServiceData>) {
     updateFormData(data);
     if (step === stepC) setStep(stepB);
     else if (step === stepB) setStep(stepA);
-    console.log("step: "+ step);
+    console.log("step: " + step);
   }
 
   // We need a method to update our formData
@@ -140,4 +140,4 @@ export default function Stepper() {
     </div>
   );
 }
-"https://github.com/eduardogomesf/multi-step-form"
+
