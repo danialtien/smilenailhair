@@ -10,9 +10,9 @@ export default function BookingPage() {
         <h1 className="text-xl font-semibold text-pink-600">
           Reserve your spot
         </h1>
-        <div className="w-2/5 flex flex-col items-center justify-center gap-5">
-          <Stepper />
-        </div>
+        {/* <div className="w-2/5 flex flex-col items-center justify-center gap-5"> */}
+        <Stepper />
+        {/* </div> */}
         {/* <FormStep /> */}
       </main>
     </MultiStepFormProvider>
