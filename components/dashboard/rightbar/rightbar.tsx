@@ -6,7 +6,7 @@ export default function Rightbar () {
     <div className="absolute mr-5">
       <div className="bg-gradient-to-t from-[#d7c1a7] to-orange-200 px-5 py-6 rounded-lg mb-5 relative">
         <div className="absolute right-0 bottom-0 w-1/2 h-1/2">
-          <Image className="object-contain opacity-20" src="/images/Dashboard/astronaut.png" alt="" fill />
+          <Image className="object-contain opacity-20" src="/assets/Dashboard/astronaut.png" alt="" fill />
         </div>
         <div className="flex flex-col gap-6">
           <span className="font-bold">🔥 Available Now</span>

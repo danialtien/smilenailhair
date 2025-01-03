@@ -18,7 +18,7 @@ export default function Transactions() {
             <td className="pb-2">
               <div className="flex gap-2.5 items-center">
                 <Image
-                  src="/images/Dashboard/noavatar.png"
+                  src="/assets/Dashboard/noavatar.png"
                   alt=""
                   width={40}
                   height={40}
@@ -39,7 +39,7 @@ export default function Transactions() {
             <td className="pb-2">
               <div className="flex gap-2.5 items-center">
                 <Image
-                  src="/images/Dashboard/noavatar.png"
+                  src="/assets/Dashboard/noavatar.png"
                   alt=""
                   width={40}
                   height={40}
@@ -58,7 +58,7 @@ export default function Transactions() {
             <td className="pb-2">
               <div className="flex gap-2.5 items-center">
                 <Image
-                  src="/images/Dashboard/noavatar.png"
+                  src="/assets/Dashboard/noavatar.png"
                   alt=""
                   width={40}
                   height={40}
@@ -79,7 +79,7 @@ export default function Transactions() {
             <td className="pb-2">
               <div className="flex gap-2.5 items-center">
                 <Image
-                  src="/images/Dashboard/noavatar.png"
+                  src="/assets/Dashboard/noavatar.png"
                   alt=""
                   width={40}
                   height={40}

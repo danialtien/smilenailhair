@@ -97,7 +97,7 @@ export default function Sidebar() {
       <div className="flex items-center gap-5 mb-5">
         <Image
           className="rounded-full object-cover"
-          src="/images/Dashboard/noavatar.png"
+          src="/assets/Dashboard/noavatar.png"
           alt=""
           width="50"
           height="50"

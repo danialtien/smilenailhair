@@ -58,7 +58,7 @@ export default function Banner() {
                             <p className='text-lg font-normal'>More than 500+ <br /> recipes.</p>
             </div> */}
             <Image
-              src="/images/Banner/thumnail.jpg"
+              src="/assets/Banner/thumnail.jpg"
               alt="nothing"
               width={1000}
               height={805}

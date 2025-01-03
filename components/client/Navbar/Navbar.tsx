@@ -34,7 +34,7 @@ const Navbar = () => {
               {/* Logo */}
               <div className="flex flex-shrink-0 items-center border-right">
                 {/* <Image */}
-                {/*   src="/images/Logo/SmileNailHairLogo.png" */}
+                {/*   src="/assets/Logo/SmileNailHairLogo.png" */}
                 {/*   alt="Logo" */}
                 {/*   width={120} */}
                 {/*   height={120} */}
@@ -48,7 +48,7 @@ const Navbar = () => {
 
                 <Link href="/">
                   <Image
-                    src="/images/Logo/SmileNailHairLogo.png"
+                    src="/assets/Logo/SmileNailHairLogo.png"
                     alt="Logo"
                     width={120}
                     height={120}
@@ -80,7 +80,7 @@ const Navbar = () => {
               <div className="gap-6 hidden lg:flex">
                 <div className="flex items-center gap-2">
                   <Image
-                    src={"/images/Navbar/phone.svg"}
+                    src="/assets/Navbar/phone.svg"
                     alt="phone-image"
                     width={19}
                     height={19}

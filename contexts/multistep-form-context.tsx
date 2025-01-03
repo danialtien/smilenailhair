@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 
@@ -26,7 +28,7 @@ export const MultiStepFormProvider = ({
   const [currentStep, setCurrentStep] = useState(1);
   const [steps, _] = useState([
     { title: "Apointment", number: 1 },
-    { title: "Your Info", number: 2 },
+    { title: "Customer", number: 2 },
     { title: "Services", number: 3 },
     { title: "Payment", number: 4 },
   ]);

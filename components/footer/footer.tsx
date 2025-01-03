@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="flex items-center justify-around py-2.5 rounded-lg text-foreground">
         <div className="flex-col mx-5">
           <Image
-            src="/images/Logo/SmileNailHairLogo.png"
+            src="/assets/Logo/SmileNailHairLogo.png"
             alt=""
             width={300}
             height={300}

@@ -4,21 +4,35 @@ import {
   bookingService,
   InputBookingServiceData,
 } from "@/model/bookingServiceModel";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
-interface MultistepFormContextType {
+interface MultiFormContextType {
   formData: InputBookingServiceData;
   updateFormData: (data: Partial<InputBookingServiceData>) => void;
   clearFormData: () => void;
 }
 
-const MultistepFormContext = createContext<
-  MultistepFormContextType | undefined
->(undefined);
+// export const MultiFormContext = createContext<MultiFormContextType | undefined>(
+//   undefined,
+// );
+
+export const MultiFormContext = createContext({
+  formData: {
+    id: bookingService[bookingService.length - 1].id,
+    serviceName: "",
+    duration: 5,
+    numOfAttending: 1,
+    apointmentDate: new Date(),
+    technician: "",
+    note: "",
+  },
+  updateFormData: () => {},
+  clearFormData: () => {},
+} as MultiFormContextType);
 
 const STORAGE_KEY = "multistep_form_data";
 
-export default function MultistepFormContextProvider({
+export default function MultiFormContextProvider({
   children,
 }: {
   children: ReactNode;
@@ -50,20 +64,10 @@ export default function MultistepFormContextProvider({
   };
 
   return (
-    <MultistepFormContext.Provider
+    <MultiFormContext.Provider
       value={{ formData, updateFormData, clearFormData }}
     >
       {children}
-    </MultistepFormContext.Provider>
+    </MultiFormContext.Provider>
   );
-}
-
-export function useMultistepFormContext() {
-  const context = useContext(MultistepFormContext);
-  if (context === undefined) {
-    throw new Error(
-      "useMultistepFormContext must be used within a MultistepFormContextProvider",
-    );
-  }
-  return context;
 }

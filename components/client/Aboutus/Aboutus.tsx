@@ -13,7 +13,7 @@ export default function AboutUs() {
         <div className="grid grid-cols-1 lg:grid-cols-12 my-16 space-x-5">
           <div className="col-span-6 flex justify-start">
             <Image
-              src="/images/Cook/aboutus.jpg"
+              src="/assets/Cook/aboutus.jpg"
               alt="nothing"
               width={636}
               height={808}

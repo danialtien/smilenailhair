@@ -14,10 +14,13 @@ const eslintConfig = [
   ...compat.config({
     extends: ["next"],
     rules: {
-      "prefer-const": ["error", {
-          "destructuring": "all",
-          "ignoreReadBeforeAssign": false,
-      }],
+      "prefer-const": [
+        "error",
+        {
+          destructuring: all,
+          ignoreReadBeforeAssign: false,
+        },
+      ],
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unsafe-function-type": "off",
@@ -30,3 +33,4 @@ const eslintConfig = [
 ];
 
 export default eslintConfig;
+
