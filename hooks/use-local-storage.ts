@@ -12,7 +12,7 @@ export function useLocalStorage() {
 
   function removeItem(key: string) {
     if (!localStorage) return null;
-    localStorage.getItem(key);
+    localStorage.removeItem(key);
   }
 
   return {

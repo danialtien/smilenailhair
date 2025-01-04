@@ -6,11 +6,12 @@ export default function Stepper() {
 
   return (
     <ol className="flex items-center w-1/2 text-sm font-medium text-center text-base">
-      {steps.map((step) => (
+      {steps.map((step, index, stepsLength) => (
         <Step
           key={step.number}
           step={step}
           isActive={step.number === currentStep}
+          isLastStep={index === stepsLength.length - 1}
         />
       ))}
     </ol>

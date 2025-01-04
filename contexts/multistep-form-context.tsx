@@ -11,14 +11,18 @@ type MultiStepFormContextData = {
   }[];
   handleNextStep: () => void;
   handlePrevStep: () => void;
+  resetStep: () => void;
 };
 
 export const MultiStepFormContext = createContext({
-  currentStep: 0,
+  currentStep: 2,
   steps: [],
   handleNextStep: () => {},
   handlePrevStep: () => {},
+  resetStep: () => {},
 } as MultiStepFormContextData);
+
+const STORAGE_KEY = "CURRENT_STEP";
 
 export const MultiStepFormProvider = ({
   children,
@@ -35,7 +39,7 @@ export const MultiStepFormProvider = ({
   const { getItemFromLocalStorage, saveItemToLocalStorage } = useLocalStorage();
 
   useEffect(() => {
-    const step = getItemFromLocalStorage("currentStep");
+    const step = getItemFromLocalStorage(STORAGE_KEY);
     if (step) setCurrentStep(step);
   }, [getItemFromLocalStorage]);
 
@@ -43,7 +47,7 @@ export const MultiStepFormProvider = ({
     const newStepValue = currentStep + 1;
     if (currentStep < steps.length) {
       setCurrentStep(newStepValue);
-      saveItemToLocalStorage("currentStep", `${newStepValue}`);
+      saveItemToLocalStorage(STORAGE_KEY, `${newStepValue}`);
     }
   };
 
@@ -51,13 +55,19 @@ export const MultiStepFormProvider = ({
     const newStepValue = currentStep - 1;
     if (currentStep > 1) {
       setCurrentStep(newStepValue);
-      saveItemToLocalStorage("currentStep", `${newStepValue}`);
+      saveItemToLocalStorage(STORAGE_KEY, `${newStepValue}`);
     }
+  };
+
+  const resetStep = () => {
+    const newStepValue = 1;
+    setCurrentStep(newStepValue);
+    saveItemToLocalStorage(STORAGE_KEY, `${newStepValue}`);
   };
 
   return (
     <MultiStepFormContext.Provider
-      value={{ steps, currentStep, handleNextStep, handlePrevStep }}
+      value={{ steps, currentStep, handleNextStep, handlePrevStep, resetStep }}
     >
       {children}
     </MultiStepFormContext.Provider>

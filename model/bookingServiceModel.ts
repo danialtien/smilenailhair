@@ -8,7 +8,7 @@ export interface IBookingService {
   apointmentDate: Date; // Lịch hẹn
   technician: string; // Chọn thợ làm nail
   note: string;
-  [key: string]: any
+  [key: string]: any;
 }
 
 export const bookingService: IBookingService[] = [
@@ -37,7 +37,9 @@ export const inputBookingServiceSchema = z.object({
   serviceName: z.string(),
   duration: z.number().min(5).max(120),
   numOfAttending: z.number().max(5),
-  apointmentDate: z.date(),
+  apointmentDate: z.date({
+    required_error: "An apointment date is required",
+  }),
   technician: z.string(),
   note: z.string().max(255),
 });

@@ -6,13 +6,18 @@ interface StepProps {
     title?: string;
   };
   isActive?: boolean;
+  isLastStep?: boolean;
 }
 
-export default function Step({ step, isActive = false }: StepProps) {
+export default function Step({
+  step,
+  isActive = false,
+  isLastStep = false,
+}: StepProps) {
   return (
     <Fragment>
       <li
-        className={`flex w-full items-center ${isActive && "text-pink-600"} after:w-full after:h-1 after:border-b after:border-base after:border-1 after:hidden sm:after:inline-block after:mx-2`}
+        className={`flex items-center ${isActive && "text-pink-600"} ${isLastStep ? "w-2/5" : "w-full after:inline-block after:w-full after:h-1 after:border-b after:border-base after:border-1 after:mx-2"}`}
       >
         <span className="flex flex-col gap-1 w-full items-center after:content-['/'] sm:after:hidden after:mx-2">
           {/* <MdOfflinePin size={22} className="mr-1" /> */}
@@ -30,16 +35,6 @@ export default function Step({ step, isActive = false }: StepProps) {
           </span>
         </span>
       </li>
-      {/* <li className="flex md:w-full items-center text-pink-600 after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700"> */}
-      {/*   <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500"> */}
-      {/*     <span className="me-2">2</span> */}
-      {/*     Account <span className="hidden sm:inline-flex sm:ms-2">Info</span> */}
-      {/*   </span> */}
-      {/* </li> */}
-      {/* <li className="flex items-center"> */}
-      {/*   <span className="me-2">4.</span> */}
-      {/*   Confirmation */}
-      {/* </li> */}
     </Fragment>
   );
 }

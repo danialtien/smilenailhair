@@ -1,4 +1,4 @@
-import { MultiFormContext } from "@/contexts/form-context";
+import { MultiFormContext } from "@/contexts/multi-form-context";
 import { useContext } from "react";
 
 export function useMultiFormContext() {

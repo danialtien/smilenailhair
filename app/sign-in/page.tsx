@@ -11,7 +11,7 @@ export default function LoginPage() {
         <Image
           alt=""
           className="absolute top-0 right-0 -mr-[68px] w-auto h-screen z-40 object-cover mix-blend-multiply"
-          src="/assets/Banner/aaker-kDA6tGn2Q6E-unsplash.jpg"}
+          src="/assets/Banner/aaker-kDA6tGn2Q6E-unsplash.jpg"
           width={2608}
           height={3590}
         ></Image>

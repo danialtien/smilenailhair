@@ -59,7 +59,7 @@ export default function Newsletter() {
                         className="p-1 focus:outline-none focus:shadow-outline"
                       >
                         <Image
-                          src="/assets/Newsletter/arrow.svg"}
+                          src="/assets/Newsletter/arrow.svg"
                           alt="inputicon"
                           width={57}
                           height={71}
@@ -76,7 +76,7 @@ export default function Newsletter() {
           <div className="col-span-5 relative hidden md:block">
             <div>
               <Image
-                src="/assets/Newsletter/gallary7.jpg"}
+                src="/assets/Newsletter/gallary7.jpg"
                 alt="soup-image"
                 width={626}
                 height={602}

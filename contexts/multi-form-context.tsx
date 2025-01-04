@@ -1,10 +1,11 @@
 "use client";
 
+import { useLocalStorage } from "@/hooks/use-local-storage";
 import {
   bookingService,
   InputBookingServiceData,
 } from "@/model/bookingServiceModel";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface MultiFormContextType {
   formData: InputBookingServiceData;
@@ -18,7 +19,7 @@ interface MultiFormContextType {
 
 export const MultiFormContext = createContext({
   formData: {
-    id: bookingService[bookingService.length - 1].id,
+    id: bookingService.length,
     serviceName: "",
     duration: 5,
     numOfAttending: 1,
@@ -30,15 +31,16 @@ export const MultiFormContext = createContext({
   clearFormData: () => {},
 } as MultiFormContextType);
 
-const STORAGE_KEY = "multistep_form_data";
+const STORAGE_KEY = "BOOKING_SERVICE_DATA";
 
-export default function MultiFormContextProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export const MultiFormProvider = ({ children }: { children: ReactNode }) => {
+  const {
+    getItemFromLocalStorage,
+    saveItemToLocalStorage,
+    removeItemFromLocalStorage,
+  } = useLocalStorage();
   const initialFormData: InputBookingServiceData = {
-    id: bookingService[bookingService.length - 1].id,
+    id: bookingService.length,
     serviceName: "",
     duration: 5,
     numOfAttending: 1,
@@ -48,19 +50,19 @@ export default function MultiFormContextProvider({
   };
 
   const [formData, setFormData] = useState<InputBookingServiceData>(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : initialFormData;
+    const saved = getItemFromLocalStorage(STORAGE_KEY);
+    return saved !== null ? saved : initialFormData;
   });
 
   const updateFormData = (data: Partial<InputBookingServiceData>) => {
     const updatedData = { ...formData, ...data };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
+    saveItemToLocalStorage(STORAGE_KEY, JSON.stringify(updatedData));
     setFormData(updatedData);
   };
 
   const clearFormData = () => {
     setFormData(initialFormData);
-    localStorage.removeItem(STORAGE_KEY);
+    removeItemFromLocalStorage(STORAGE_KEY);
   };
 
   return (
@@ -70,4 +72,4 @@ export default function MultiFormContextProvider({
       {children}
     </MultiFormContext.Provider>
   );
-}
+};
