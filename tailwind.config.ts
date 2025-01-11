@@ -25,6 +25,7 @@ export default {
           800: "#4e342e",
           900: "#3e2723",
         },
+        lama: "#F35C7A",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",

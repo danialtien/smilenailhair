@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
         search: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
     ],
   },
 };
