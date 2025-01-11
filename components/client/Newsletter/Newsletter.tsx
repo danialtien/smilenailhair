@@ -6,7 +6,7 @@ export default function Newsletter() {
   return (
     <div className="relative">
       <div
-        className="mx-auto max-w-2xl br-50 md:max-w-7xl mt-48 rounded-lg"
+        className="mt-48 rounded-lg"
         style={{ backgroundColor: "d7c1a7" }}
       >
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 md:grid-cols-12 xl:gap-x-8">
@@ -20,7 +20,7 @@ export default function Newsletter() {
                 damping={1e-1}
                 triggerOnce={true}
               >
-                <h3 className="text-lg font-normal text-white mb-3 ls-51">
+                <h3 className="text-lg font-normal mb-3 ls-51">
                   {" "}
                   NEWSLETTER{" "}
                 </h3>
@@ -32,7 +32,7 @@ export default function Newsletter() {
                 damping={1e-1}
                 triggerOnce={true}
               >
-                <h3 className="text-3xl md:text-5xl font-semibold text-white mb-8">
+                <h3 className="text-3xl md:text-5xl font-semibold mb-8">
                   Subscribe our <br /> newsletter.
                 </h3>
               </Fade>
@@ -45,7 +45,7 @@ export default function Newsletter() {
                   damping={1e-1}
                   triggerOnce={true}
                 >
-                  <div className="relative text-white focus-within:text-white flex flex-row-reverse shadow-fi rounded-full">
+                  <div className="relative  focus-within:text-black flex flex-row-reverse shadow-fi rounded-full">
                     <input
                       type="Email address"
                       name="q"
@@ -83,18 +83,6 @@ export default function Newsletter() {
                 className="-mt-24"
               />
             </div>
-            {/* <div className="absolute top-[78%]">
-                            <Image src={'/images/Newsletter/onion.svg'} alt="onion-image" width={300} height={122} />
-                        </div>
-                        <div className="absolute top-[30%] right-[-23%] hidden lg:block">
-                            <Image src={'/images/Newsletter/lec.svg'} alt="lettuce-image" width={300} height={122} />
-                        </div>
-                        <div className="absolute bottom-[10%] left-[0%]">
-                            <Image src={'/images/Newsletter/yellow.svg'} alt="yellow-image" width={59} height={59} />
-                        </div>
-                        <div className="absolute bottom-[20%] right-[20%]">
-                            <Image src={'/images/Newsletter/blue.svg'} alt="blue-image" width={25} height={25} />
-                        </div> */}
           </div>
         </div>
       </div>

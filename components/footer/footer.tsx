@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-5 px-5 bg-base">
+    <footer className="bg-base">
       <div className="flex items-center justify-around py-2.5 rounded-lg text-foreground">
         <div className="flex-col mx-5">
           <Image
@@ -35,13 +35,10 @@ export default function Footer() {
           <p className="mb-5">
             Chỗ này dùng để ghi địa chỉ cửa hàng/chi nhánh bla bla bla...
           </p>
-          <div className="font-bold">Zenith Helios</div>
+          <div className="font-bold"></div>
           <div className="text-xs">@ All right reserved.</div>
         </div>
         <div className="flex-col">
-          <p className="text-xl font-semibold my-2">
-            Nhớ vô like fanpage nha mấy bẹn ❤️🤩🌟
-          </p>
           <iframe
             src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=400&height=300&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
             width="400"
