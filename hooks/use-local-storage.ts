@@ -1,18 +1,18 @@
 export function useLocalStorage() {
   function getItem(key: string) {
-    if (!localStorage) return null;
-    const value = localStorage.getItem(key);
+    if (typeof window === 'undefined' || !window.localStorage) return null;
+    const value = window.localStorage.getItem(key);
     return value ? JSON.parse(value) : null;
   }
 
   function setItem(key: string, value: string) {
-    if (!localStorage) return null;
-    localStorage.setItem(key, value);
+    if (typeof window === 'undefined' || !window.localStorage) return null;
+    window.localStorage.setItem(key, value);
   }
 
   function removeItem(key: string) {
-    if (!localStorage) return null;
-    localStorage.removeItem(key);
+    if (typeof window === 'undefined' || !window.localStorage) return null;
+    window.localStorage.removeItem(key);
   }
 
   return {
