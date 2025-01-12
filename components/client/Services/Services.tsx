@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Fade } from "react-awesome-reveal";
-import { ChevronRightIcon } from "lucide-react";
 
 interface cardDataType {
   imgSrc: string;
@@ -13,25 +12,25 @@ interface cardDataType {
 
 const cardData: cardDataType[] = [
   {
-    imgSrc: "/images/Features/featurenail.jpg",
+    imgSrc: "/assets/Features/featurenail.jpg",
     heading: "Nail beauty",
     subheading: "Professional nail care services",
     link: "/customer/booking-now",
   },
   {
-    imgSrc: "/images/Features/featurehair.jpg",
+    imgSrc: "/assets/Features/featurehair.jpg",
     heading: "Hair style",
     subheading: "Professional hair care services",
     link: "/customer/booking-now",
   },
   {
-    imgSrc: "/images/Features/featuremakeup.jpg",
+    imgSrc: "/assets/Features/featuremakeup.jpg",
     heading: "Makeup",
     subheading: "Professional makeup services",
     link: "/customer/booking-now",
   },
   {
-    imgSrc: "/images/Features/featurespa.jpg",
+    imgSrc: "/assets/Features/featurespa.jpg",
     heading: "Spa",
     subheading: "Professional spa services",
     link: "/customer/booking-now",
