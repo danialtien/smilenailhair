@@ -30,7 +30,7 @@ export interface ICustomerInfo {
   username?: string;
   email: string;
   password: string;
-  avatar: string;
+  img: string;
   isAdmin: boolean;
   isActive: boolean;
   phone: string;
@@ -63,7 +63,7 @@ export const user: ICustomerInfo = {
   fullname: "Admin",
   email: "admin@gmail.com",
   password: "123456",
-  avatar: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+  img: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
   isAdmin: true,
   isActive: true,
   phone: "0978563518",
@@ -77,7 +77,7 @@ export const users: ICustomerInfo[] = [
     fullname: "Admin",
     email: "admin@gmail.com",
     password: "123456",
-    avatar: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+    img: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
     isAdmin: true,
     isActive: true,
     phone: "0978563518",
@@ -89,7 +89,7 @@ export const users: ICustomerInfo[] = [
     fullname: "User A",
     email: "userA@gmail.com",
     password: "123456",
-    avatar: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+    img: "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
     isAdmin: false,
     isActive: true,
     phone: "0978563518",
