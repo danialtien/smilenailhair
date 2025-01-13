@@ -1,13 +1,18 @@
 import Image from "next/image";
 import Navbar from "../components/client/Navbar/Navbar";
 import NavbarCustom from "@/components/client/NavbarCustom/NavbarCustom";
+import Slider from "@/components/client/Slider/Slider";
+import AboutUs from "@/components/client/Aboutus/Aboutus";
+import Services from "@/components/client/Services/Services";
+import Gallery from "@/components/client/Gallery/Gallery";
+import Newsletter from "@/components/client/Newsletter/Newsletter";
 
 export default function Home() {
   return (
     <>
       {/* <Navbar /> */}
       <NavbarCustom />
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      {/* <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
           <Image
             src="/next.svg"
@@ -99,7 +104,12 @@ export default function Home() {
             Go to nextjs.org →
           </a>
         </footer>
-      </div>
+      </div> */}
+       <Slider />
+      <AboutUs />
+      <Services />
+      <Gallery />
+      <Newsletter />
     </>
   );
 }

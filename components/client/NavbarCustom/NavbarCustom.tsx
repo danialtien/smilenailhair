@@ -1,5 +1,6 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Menu from "../Menu/Menu";
 import SearchBar from "../SearchBar/SearchBar";
@@ -22,14 +23,14 @@ const MenuFields: IMenuFields[] = [
   {
     id: 2,
     title: "Service",
-    url: "/",
+    url: "/customer/services",
     current: false,
   },
   {
     id: 3,
     title: "Booking Now",
     url: "/customer/booking-now",
-    current: true,
+    current: false,
   },
   {
     id: 4,
@@ -50,6 +51,9 @@ function classNames(...classes: string[]) {
 }
 
 const NavbarCustom = () => {
+
+  const [currentItem, setCurrentItem] = useState(1);
+
   return (
     <div className="h-20 px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-14 relative bg-base ">
       <div className="h-full flex items-center justify-between md:hidden text-white">
@@ -65,11 +69,18 @@ const NavbarCustom = () => {
         {/* LEFT */}
         <div className="w-1/3 xl:w-1/2 flex justify-between items-center gap-8  text-white">
           <Link href="/" className="flex items-center gap-3">
-            <Image
+            {/* <Image
               src="/assets/Logo/SmileNailHairLogo.png"
               alt=""
-              width={69}
-              height={69}
+              width={60}
+              height={60}
+            /> */}
+
+            <Image
+              src="/images/naillogoblack.png"
+              alt=""
+              width={60}
+              height={60}
             />
             <div className="text-lg tracking-wide">Smile Nail & Hair.</div>
           </Link>
@@ -77,9 +88,10 @@ const NavbarCustom = () => {
             {MenuFields.map((item) => (
               <Link
                 className={classNames(
-                  item.current ? "bg-orange-100 text-black" : "navlinks",
+                  item.id == currentItem ? "bg-orange-100 text-black rounded-md" : "navlinks",
                   "p-3 text-lg space-links hover:rounded-md hover:text-black hover:bg-orange-100"
                 )}
+                onClick={() => setCurrentItem(item.id)}
                 href={item.url}
                 key={item.id}
               >
@@ -89,7 +101,7 @@ const NavbarCustom = () => {
           </div>
         </div>
         {/* RIGHT */}
-        <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8">
+        <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-4">
           <SearchBar />
           <NavIcons />
         </div>
