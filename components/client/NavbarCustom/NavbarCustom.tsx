@@ -5,12 +5,12 @@ import Image from "next/image";
 import Menu from "../Menu/Menu";
 import SearchBar from "../SearchBar/SearchBar";
 import NavIcons from "../NavIcons/NavIcons";
+import { usePathname } from "next/navigation";
 
 interface IMenuFields {
   id: number;
   title: string;
   url: string;
-  current: boolean;
 }
 
 const MenuFields: IMenuFields[] = [
@@ -18,31 +18,26 @@ const MenuFields: IMenuFields[] = [
     id: 1,
     title: "Home",
     url: "/",
-    current: false,
   },
   {
     id: 2,
     title: "Service",
     url: "/customer/services",
-    current: false,
   },
   {
     id: 3,
     title: "Booking Now",
     url: "/customer/booking-now",
-    current: false,
   },
   {
     id: 4,
     title: "Gallery",
-    url: "/",
-    current: false,
+    url: "/customer/Gallery",
   },
   {
     id: 5,
     title: "Contact",
-    url: "/",
-    current: false,
+    url: "/customer/Contact",
   },
 ];
 
@@ -51,7 +46,7 @@ function classNames(...classes: string[]) {
 }
 
 const NavbarCustom = () => {
-
+  const pathName = usePathname();
   const [currentItem, setCurrentItem] = useState(1);
 
   return (
@@ -88,10 +83,11 @@ const NavbarCustom = () => {
             {MenuFields.map((item) => (
               <Link
                 className={classNames(
-                  item.id == currentItem ? "bg-orange-100 text-black rounded-md" : "navlinks",
-                  "p-3 text-lg space-links hover:rounded-md hover:text-black hover:bg-orange-100"
+                  item.url == pathName
+                    ? "bg-orange-100 text-black rounded-md"
+                    : "navlinks",
+                  "p-3 text-lg space-links hover:rounded-md hover:text-black hover:bg-orange-100",
                 )}
-                onClick={() => setCurrentItem(item.id)}
                 href={item.url}
                 key={item.id}
               >

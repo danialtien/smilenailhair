@@ -18,7 +18,7 @@ const cardData: cardDataType[] = [
     link: "/customer/booking-now",
   },
   {
-    imgSrc: "/assets/Features/featurehair.jpg",
+    imgSrc: "/assets/Features/featuremakeup.jpg",
     heading: "Hair style",
     subheading: "Professional hair care services",
     link: "/customer/booking-now",
@@ -60,12 +60,12 @@ export default function Services() {
           triggerOnce={true}
         >
           <p className="text-2xl lg:text-3xl font-semibold text-lightgrey pb-5">
-            Get a many of interesting  services.
+            Get a many of interesting services.
           </p>
         </Fade>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10">
         <Fade
           direction={"up"}
           delay={1000}
@@ -74,17 +74,14 @@ export default function Services() {
           triggerOnce={true}
         >
           {cardData.map((items, i) => (
-            <div className="p-3 ring ring-gray-500 rounded-xl " key={i}>
-              <div className="w-full h-2/3 justify-center">
-                <Image
-                  src={items.imgSrc}
-                  alt={items.imgSrc}
-                  width={510}
-                  height={300}
-                  style={{ width: "100%", height: "300px" }}
-                  className="rounded-xl"
-                />
-              </div>
+            <div className="p-4 ring ring-gray-500 rounded-xl " key={i}>
+              <Image
+                src={items.imgSrc}
+                alt={items.imgSrc}
+                width={500}
+                height={300}
+                className="rounded-xl mx-auto h-[300px]"
+              />
               <div className="w-full h-1/3 justify-center items-center text-center">
                 <h3 className="text-xl text-black font-semibold text-center mt-5">
                   {items.heading}
@@ -94,7 +91,9 @@ export default function Services() {
                 </p>
                 <div className="flex items-center justify-center">
                   <Link href={items.link}>
-                    <button className='bg-black text-white ring-1 ring-gray-500 py-3 px-4 rounded-md'>BOOK NOW</button>
+                    <button className="bg-black text-white ring-1 ring-gray-500 py-3 px-4 rounded-md">
+                      BOOK NOW
+                    </button>
                   </Link>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import FormStep from "@/components/client/FormStep/FormStep";
+import FormStep from "@/components/client/Stepper/FormStep/FormStep";
 import Stepper from "@/components/client/Stepper/Stepper";
 import { MultiFormProvider } from "@/contexts/multi-form-context";
 import { MultiStepFormProvider } from "@/contexts/multistep-form-context";
