@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "fullname": "Admin",
+    "email": "admin@gmail.com",
+    "password": "123456",
+    "img": "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+    "isAdmin": true,
+    "isActive": true,
+    "phone": "0978563518",
+    "address": "Nhà cái đến từ châu Âu",
+    "createdAt": "2024-12-12"
+  },
+  {
+    "id": 2,
+    "fullname": "User A",
+    "email": "userA@gmail.com",
+    "password": "123456",
+    "img": "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+    "isAdmin": false,
+    "isActive": true,
+    "phone": "0978563518",
+    "address": "Nhà cái đến từ châu Âu",
+    "createdAt": "2024-12-12"
+  }
+]

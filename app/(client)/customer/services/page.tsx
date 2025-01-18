@@ -2,12 +2,12 @@
 
 import SearchBar from "@/components/client/SearchBar/SearchBar";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ICategory } from "@/model/Category/ICategory";
-import { IService } from "@/model/Services/IService";
+import { Category } from "@/model/Category";
+import { Service } from "@/model/Service";
 import Image from "next/image";
 import { useState } from "react";
 
-export const categories: ICategory[] = [
+const categories: Category[] = [
   {
     id: 1,
     title: "Nail",
@@ -150,7 +150,7 @@ export const categories: ICategory[] = [
   },
 ];
 
-export const services: IService[] = [
+const services: Service[] = [
   {
     id: 1,
     name: "Express Pedicure",
@@ -218,7 +218,7 @@ export const services: IService[] = [
 
 interface checkCatIdProps {
   id: number;
-};
+}
 
 export default function ServicePage() {
   const [checkedCatId, setCheckedCatId] = useState<checkCatIdProps[]>([
@@ -229,22 +229,22 @@ export default function ServicePage() {
     checkedCatId?.map((item) => {
       if (item.id === id) {
         setCheckedCatId(checkedCatId.filter((item) => item.id !== id));
-      }
-      else {
+      } else {
         setCheckedCatId([...checkedCatId, { id }]);
       }
-    })
+    });
   }
 
   function filterServices() {
-
     if (checkedCatId.length === 1 && checkedCatId[0].id === 0) {
       return services;
     }
 
     const filteredServices = categories
-      .filter(category => checkedCatId.some(checked => checked.id === category.id))
-      .flatMap(category => category.services);
+      .filter((category) =>
+        checkedCatId.some((checked) => checked.id === category.id),
+      )
+      .flatMap((category) => category.services);
     return filteredServices;
   }
 
@@ -253,18 +253,29 @@ export default function ServicePage() {
       {/* SISEBAR */}
       <div className="">
         <div className="flex flex-col items-center w-96 bg-white h-screen border-r">
-          <h1 className="font-light text-2xl text-center mt-10 mb-5">Our services</h1>
+          <h1 className="font-light text-2xl text-center mt-10 mb-5">
+            Our services
+          </h1>
           <ul>
             <li className="flex items-center gap-2 p-2">
-              <Checkbox id="0" checked={checkedCatId.some(x => x.id === 0)} />
-              <label htmlFor="all" className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              <Checkbox id="0" checked={checkedCatId.some((x) => x.id === 0)} />
+              <label
+                htmlFor="all"
+                className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
                 All
               </label>
             </li>
             {categories.map((category, i) => (
               <li className="flex items-center gap-2 p-2">
-                <Checkbox id={category.id.toString()} onClick={() => updateCheckedId(category.id)} />
-                <label htmlFor={category.id.toString()} className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                <Checkbox
+                  id={category.id.toString()}
+                  onClick={() => updateCheckedId(category.id)}
+                />
+                <label
+                  htmlFor={category.id.toString()}
+                  className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
                   {category.title}
                 </label>
               </li>
@@ -273,8 +284,6 @@ export default function ServicePage() {
         </div>
       </div>
 
-
-
       {/* MAIN */}
       <div className="p-10 flex flex-col gap-8">
         <div className="text-center">
@@ -282,7 +291,7 @@ export default function ServicePage() {
             Services
           </h3>
           <p className="text-2xl lg:text-3xl font-semibold text-lightgrey pb-5">
-            Get a many of interesting  services.
+            Get a many of interesting services.
           </p>
         </div>
         {/* SEARCH */}
@@ -290,11 +299,19 @@ export default function ServicePage() {
           <SearchBar />
         </div>
 
-
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10">
           {filterServices().map((service, i) => (
-            <div className="p-4 ring ring-gray-500 rounded-xl " key={service.id}>
-              <Image src={service.image || "/assets/Banner/thumnail.jpg"} alt={service.name} width={400} height={200} className="rounded-xl mx-auto h-[200px]" />
+            <div
+              className="p-4 ring ring-gray-500 rounded-xl "
+              key={service.id}
+            >
+              <Image
+                src={service.image || "/assets/Banner/thumnail.jpg"}
+                alt={service.name}
+                width={400}
+                height={200}
+                className="rounded-xl mx-auto h-[200px]"
+              />
               <div className="mt-5">
                 <h4 className="text-xl font-semibold text-lightgrey">
                   {service.name}
@@ -313,7 +330,6 @@ export default function ServicePage() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }
