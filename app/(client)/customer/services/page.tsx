@@ -243,6 +243,10 @@ export default function ServicePage() {
   function filterServices() {
     var filteredServices = [];
 
+    if (checkedCatId.length === 1 && checkedCatId[0].id === 0) {
+      return categories.flatMap((category) => category.services);
+    }
+
     filteredServices = categories
       .filter((category) =>
         checkedCatId.some((checked) => checked.id === category.id),
@@ -269,7 +273,7 @@ export default function ServicePage() {
             Our services
           </h1>
           <ul>
-            <li className="flex items-center gap-2 p-2">
+            <li key={0} className="flex items-center gap-2 p-2">
               <Checkbox id="0" checked={checkedCatId.some((x) => x.id === 0)} />
               <label
                 htmlFor="all"
@@ -279,7 +283,7 @@ export default function ServicePage() {
               </label>
             </li>
             {categories.map((category, i) => (
-              <li className="flex items-center gap-2 p-2">
+              <li key={category.id} className="flex items-center gap-2 p-2">
                 <Checkbox
                   id={category.id.toString()}
                   onClick={() => updateCheckedId(category.id)}
