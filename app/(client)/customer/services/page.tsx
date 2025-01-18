@@ -32,7 +32,6 @@ export default function ServicePage() {
       }
     })
   }
-
   function filterServices() {
     var filteredServices = [];
 
