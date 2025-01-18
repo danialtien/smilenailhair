@@ -216,8 +216,37 @@ export const services: IService[] = [
   },
 ];
 
+interface checkCatIdProps {
+  id: number;
+};
+
 export default function ServicePage() {
-  const [checked, setChecked] = useState(false);
+  const [checkedCatId, setCheckedCatId] = useState<checkCatIdProps[]>([
+    { id: 0 },
+  ]);
+
+  function updateCheckedId(id: number) {
+    checkedCatId?.map((item) => {
+      if (item.id === id) {
+        setCheckedCatId(checkedCatId.filter((item) => item.id !== id));
+      }
+      else {
+        setCheckedCatId([...checkedCatId, { id }]);
+      }
+    })
+  }
+
+  function filterServices() {
+
+    if (checkedCatId.length === 1 && checkedCatId[0].id === 0) {
+      return services;
+    }
+
+    const filteredServices = categories
+      .filter(category => checkedCatId.some(checked => checked.id === category.id))
+      .flatMap(category => category.services);
+    return filteredServices;
+  }
 
   return (
     <div className="flex">
@@ -227,14 +256,14 @@ export default function ServicePage() {
           <h1 className="font-light text-2xl text-center mt-10 mb-5">Our services</h1>
           <ul>
             <li className="flex items-center gap-2 p-2">
-              <Checkbox id="all" />
+              <Checkbox id="0" checked={checkedCatId.some(x => x.id === 0)} />
               <label htmlFor="all" className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                 All
               </label>
             </li>
             {categories.map((category, i) => (
               <li className="flex items-center gap-2 p-2">
-                <Checkbox id={category.id.toString()} />
+                <Checkbox id={category.id.toString()} onClick={() => updateCheckedId(category.id)} />
                 <label htmlFor={category.id.toString()} className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                   {category.title}
                 </label>
@@ -263,15 +292,21 @@ export default function ServicePage() {
 
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10">
-          {services.map((service, i) => (
-            <div className="p-3 ring ring-gray-500 rounded-xl " key={i}>
-              <div className="w-full h-2/3 justify-center">
-                <Image src={service.image || "/assets/Banner/thumnail.jpg"} alt={service.name} width={400} height={200} className="rounded-xl" />
-              </div>
+          {filterServices().map((service, i) => (
+            <div className="p-4 ring ring-gray-500 rounded-xl " key={service.id}>
+              <Image src={service.image || "/assets/Banner/thumnail.jpg"} alt={service.name} width={400} height={200} className="rounded-xl mx-auto h-[200px]" />
               <div className="mt-5">
                 <h4 className="text-xl font-semibold text-lightgrey">
                   {service.name}
                 </h4>
+                <div className="flex items-center justify-between mt-3">
+                  <p className="text-lg font-normal text-black text-opacity-50">
+                    {service.duration} {service.timeUnit}
+                  </p>
+                  <p className="text-lg font-xl font-semibold text-black text-opacity-50">
+                    {service.price}$
+                  </p>
+                </div>
                 <p className="text-sm text-gray-400">{service.description}</p>
               </div>
             </div>

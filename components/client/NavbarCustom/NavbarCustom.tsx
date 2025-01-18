@@ -49,6 +49,8 @@ const NavbarCustom = () => {
   const pathName = usePathname();
   const [currentItem, setCurrentItem] = useState(1);
 
+  console.log(pathName);
+
   return (
     <div className="h-20 px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-14 relative bg-base ">
       <div className="h-full flex items-center justify-between md:hidden text-white">
