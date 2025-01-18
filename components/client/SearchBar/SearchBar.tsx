@@ -2,7 +2,12 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-const SearchBar = () => {
+interface SearchBarProps {
+    url: string;
+    onSearch?: (name: string) => void;
+}
+
+const SearchBar = ({ url, onSearch }: SearchBarProps) => {
 
     const router = useRouter();
 
@@ -12,7 +17,8 @@ const SearchBar = () => {
         const name = formData.get("name") as string;
 
         if (name) {
-            router.push(`/list?name=${name}`)
+            onSearch && onSearch(name);
+            router.push(`${url}?name=${name}`)
         }
     };
 

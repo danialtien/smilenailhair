@@ -6,8 +6,9 @@ interface IService {
   duration: number;
   timeUnit?: string;
   description?: string;
+  type?: string;
+  image?: string;
 }
-
 interface ILocation {
   id: number;
   name: string;

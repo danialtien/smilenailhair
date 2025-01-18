@@ -2,225 +2,22 @@
 
 import SearchBar from "@/components/client/SearchBar/SearchBar";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ICategory } from "@/model/Category/ICategory";
-import { IService } from "@/model/Services/IService";
+import { categories } from "@/model/Category/CategoryData";
 import Image from "next/image";
 import { useState } from "react";
-
-export const categories: ICategory[] = [
-  {
-    id: 1,
-    title: "Nail",
-    avatar: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-    services: [
-      {
-        id: 1,
-        name: "Express Pedicure",
-        price: 20,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 2,
-        name: "Classic manicure",
-        price: 30,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-      {
-        id: 3,
-        name: "Express Manicure",
-        price: 15,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 4,
-        name: "Spa Manicure",
-        price: 25,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Hair",
-    avatar: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-    services: [
-      {
-        id: 1,
-        name: "Haircut",
-        price: 20,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 2,
-        name: "Hair coloring",
-        price: 30,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-      {
-        id: 3,
-        name: "Hair treatment",
-        price: 15,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 4,
-        name: "Hair styling",
-        price: 25,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Makeup",
-    avatar: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-    services: [
-      {
-        id: 1,
-        name: "Makeup",
-        price: 20,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 2,
-        name: "Makeup",
-        price: 30,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-      {
-        id: 3,
-        name: "Makeup",
-        price: 15,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 4,
-        name: "Makeup",
-        price: 25,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Spa",
-    avatar: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-    services: [
-      {
-        id: 1,
-        name: "Spa",
-        price: 20,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 2,
-        name: "Spa",
-        price: 30,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-      {
-        id: 3,
-        name: "Spa",
-        price: 15,
-        duration: 30,
-        timeUnit: "minutes",
-      },
-      {
-        id: 4,
-        name: "Spa",
-        price: 25,
-        duration: 45,
-        timeUnit: "minutes",
-      },
-    ],
-  },
-];
-
-export const services: IService[] = [
-  {
-    id: 1,
-    name: "Express Pedicure",
-    price: 20,
-    duration: 30,
-    timeUnit: "minutes",
-    type: "Nail",
-    image: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-  },
-  {
-    id: 2,
-    name: "Classic manicure",
-    price: 30,
-    duration: 45,
-    timeUnit: "minutes",
-    type: "Nail",
-    image: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-  },
-  {
-    id: 3,
-    name: "Express Manicure",
-    price: 15,
-    duration: 30,
-    timeUnit: "minutes",
-    type: "Nail",
-    image: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-  },
-  {
-    id: 4,
-    name: "Express Pedicure",
-    price: 20,
-    duration: 30,
-    timeUnit: "minutes",
-    type: "Nail",
-    image: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-  },
-  {
-    id: 5,
-    name: "Classic manicure",
-    price: 30,
-    duration: 45,
-    timeUnit: "minutes",
-    type: "Nail",
-    image: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-  },
-  {
-    id: 6,
-    name: "Express Manicure",
-    price: 15,
-    duration: 30,
-    timeUnit: "minutes",
-    type: "Nail",
-    image: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-  },
-  {
-    id: 6,
-    name: "Spa Manicure",
-    price: 25,
-    duration: 45,
-    timeUnit: "minutes",
-    type: "Nail",
-    image: "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
-  },
-];
 
 interface checkCatIdProps {
   id: number;
 };
 
 export default function ServicePage() {
+
+  const [seachQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (name: string) => {
+    setSearchQuery(name);
+  }
+
   const [checkedCatId, setCheckedCatId] = useState<checkCatIdProps[]>([
     { id: 0 },
   ]);
@@ -237,14 +34,21 @@ export default function ServicePage() {
   }
 
   function filterServices() {
+    var filteredServices = [];
 
     if (checkedCatId.length === 1 && checkedCatId[0].id === 0) {
-      return services;
+      return categories.flatMap(category => category.services);
     }
 
-    const filteredServices = categories
+    filteredServices = categories
       .filter(category => checkedCatId.some(checked => checked.id === category.id))
       .flatMap(category => category.services);
+
+    if (seachQuery !== '') {
+      filteredServices = categories.flatMap(category => category.services)
+      .filter(service => service.name.toLowerCase().includes(seachQuery.toLowerCase()));
+    }
+
     return filteredServices;
   }
 
@@ -273,8 +77,6 @@ export default function ServicePage() {
         </div>
       </div>
 
-
-
       {/* MAIN */}
       <div className="p-10 flex flex-col gap-8">
         <div className="text-center">
@@ -287,7 +89,7 @@ export default function ServicePage() {
         </div>
         {/* SEARCH */}
         <div className="w-1/2 mx-auto">
-          <SearchBar />
+          <SearchBar url='/customer/services' onSearch={handleSearch} />
         </div>
 
 

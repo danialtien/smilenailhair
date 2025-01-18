@@ -100,7 +100,7 @@ const NavbarCustom = () => {
         </div>
         {/* RIGHT */}
         <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-4">
-          <SearchBar />
+          <SearchBar url="" />
           <NavIcons />
         </div>
       </div>
