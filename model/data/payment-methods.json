@@ -1,0 +1,12 @@
+[
+  {
+    "cardNumber": "123456789",
+    "expiryDate": "12/23",
+    "cvv": "123"
+  },
+  {
+    "cardNumber": "987654321",
+    "expiryDate": "12/23",
+    "cvv": "123"
+  }
+]

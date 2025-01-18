@@ -1,0 +1,183 @@
+[
+  {
+    "id": 1,
+    "location": {
+      "id": 1,
+      "name": "Location A",
+      "address": "Address A",
+      "phone": "0978563518"
+    },
+    "category": {
+      "id": 1,
+      "title": "Nail",
+      "avatar": "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
+      "services": [
+        {
+          "id": 1,
+          "name": "Express Pedicure",
+          "price": 20,
+          "duration": 30,
+          "timeUnit": "minutes"
+        },
+        {
+          "id": 2,
+          "name": "Classic manicure",
+          "price": 30,
+          "duration": 45,
+          "timeUnit": "minutes"
+        },
+        {
+          "id": 3,
+          "name": "Express Manicure",
+          "price": 15,
+          "duration": 30,
+          "timeUnit": "minutes"
+        },
+        {
+          "id": 4,
+          "name": "Spa Manicure",
+          "price": 25,
+          "duration": 45,
+          "timeUnit": "minutes"
+        }
+      ]
+    },
+    "services": [
+      {
+        "id": 1,
+        "name": "Express Pedicure",
+        "price": 20,
+        "duration": 30,
+        "timeUnit": "minutes"
+      },
+      {
+        "id": 2,
+        "name": "Classic manicure",
+        "price": 30,
+        "duration": 45,
+        "timeUnit": "minutes"
+      },
+      {
+        "id": 3,
+        "name": "Express Manicure",
+        "price": 15,
+        "duration": 30,
+        "timeUnit": "minutes"
+      }
+    ],
+    "customerInfo": {
+      "id": 1,
+      "fullname": "Admin",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "img": "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+      "isAdmin": true,
+      "isActive": true,
+      "phone": "0978563518",
+      "address": "Nhà cái đến từ châu Âu",
+      "createdAt": "2024-07-05T10:30:00.000Z"
+    },
+    "paymentMethod": {
+      "id": 1,
+      "fullname": "Admin",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "img": "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+      "isAdmin": true,
+      "isActive": true,
+      "phone": "0978563518",
+      "address": "Nhà cái đến từ châu Âu",
+      "createdAt": "2024-07-05T10:30:00.000Z"
+    },
+    "date": "2023-12-12",
+    "time": "12:00",
+    "note": "Note for appointment"
+  },
+  {
+    "id": 2,
+    "location": {
+      "id": 2,
+      "name": "Location B",
+      "address": "Address B",
+      "phone": "0978563518"
+    },
+    "category": {
+      "id": 2,
+      "title": "Hair",
+      "avatar": "https://images.unsplash.com/photo-1731484636405-35018e2a8a86",
+      "services": [
+        {
+          "id": 1,
+          "name": "Haircut",
+          "price": 20,
+          "duration": 30,
+          "timeUnit": "minutes"
+        },
+        {
+          "id": 2,
+          "name": "Hair coloring",
+          "price": 30,
+          "duration": 45,
+          "timeUnit": "minutes"
+        },
+        {
+          "id": 3,
+          "name": "Hair treatment",
+          "price": 15,
+          "duration": 30,
+          "timeUnit": "minutes"
+        },
+        {
+          "id": 4,
+          "name": "Hair styling",
+          "price": 25,
+          "duration": 45,
+          "timeUnit": "minutes"
+        }
+      ]
+    },
+    "services": [
+      {
+        "id": 1,
+        "name": "Express Pedicure",
+        "price": 20,
+        "duration": 30,
+        "timeUnit": "minutes"
+      },
+      {
+        "id": 2,
+        "name": "Classic manicure",
+        "price": 30,
+        "duration": 45,
+        "timeUnit": "minutes"
+      },
+      {
+        "id": 3,
+        "name": "Express Manicure",
+        "price": 15,
+        "duration": 30,
+        "timeUnit": "minutes"
+      }
+    ],
+    "customerInfo": {
+      "id": 1,
+      "fullname": "Admin",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "img": "https://images.unsplash.com/photo-1734122415415-88cb1d7d5dc0",
+      "isAdmin": true,
+      "isActive": true,
+      "phone": "0978563518",
+      "address": "Nhà cái đến từ châu Âu",
+      "createdAt": "2024-07-05T10:30:00.000Z"
+    },
+    "paymentMethod": {
+      "cardNumber": "987654321",
+      "expiryDate": "12/23",
+      "cvv": "123"
+    },
+    "date": "2023-12-12",
+    "time": "12:00",
+    "note": "Note for appointment"
+  }
+]

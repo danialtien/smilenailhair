@@ -1,4 +1,3 @@
-
 interface IService {
   id: number;
   name: string;
@@ -22,7 +21,6 @@ interface ICategory {
   avatar: string;
   services: IService[];
 }
-
 
 export interface ICustomerInfo {
   prefix?: string;
@@ -56,8 +54,6 @@ interface IAppointment {
   time: string;
   note?: string;
 }
-
-
 
 export const user: ICustomerInfo = {
   id: 1,
@@ -343,24 +339,22 @@ export const services: IService[] = [
     price: 15,
     duration: 30,
     timeUnit: "minutes",
-  }
+  },
 ];
 
 // create list payment method
 export const paymentMethods: IPaymentMethod[] = [
-    {
-      cardNumber: "123456789",
-      expiryDate: "12/23",
-      cvv: "123",
-    },
-    {
-      cardNumber: "987654321",
-      expiryDate: "12/23",
-      cvv: "123",
-    },
-  ];
-
-
+  {
+    cardNumber: "123456789",
+    expiryDate: "12/23",
+    cvv: "123",
+  },
+  {
+    cardNumber: "987654321",
+    expiryDate: "12/23",
+    cvv: "123",
+  },
+];
 
 export const appointments: IAppointment[] = [
   {
@@ -386,8 +380,3 @@ export const appointments: IAppointment[] = [
     note: "Note for appointment",
   },
 ];
-
-
-
-
-
