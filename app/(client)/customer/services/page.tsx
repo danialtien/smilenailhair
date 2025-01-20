@@ -19,6 +19,8 @@ const categories: Category[] = [
         price: 20,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Hairdresser",
       },
       {
         id: 2,
@@ -26,6 +28,9 @@ const categories: Category[] = [
         price: 30,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Hairdresser",
+
       },
       {
         id: 3,
@@ -33,6 +38,8 @@ const categories: Category[] = [
         price: 15,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Hairdresser",
       },
       {
         id: 4,
@@ -40,6 +47,8 @@ const categories: Category[] = [
         price: 25,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Hairdresser",
       },
     ],
   },
@@ -54,6 +63,8 @@ const categories: Category[] = [
         price: 20,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Henna",
       },
       {
         id: 2,
@@ -61,6 +72,8 @@ const categories: Category[] = [
         price: 30,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Henna",
       },
       {
         id: 3,
@@ -68,6 +81,8 @@ const categories: Category[] = [
         price: 15,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Henna",
       },
       {
         id: 4,
@@ -75,6 +90,8 @@ const categories: Category[] = [
         price: 25,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Henna",
       },
     ],
   },
@@ -89,6 +106,8 @@ const categories: Category[] = [
         price: 20,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Eyelash extensions",
       },
       {
         id: 2,
@@ -96,6 +115,8 @@ const categories: Category[] = [
         price: 30,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Eyelash extensions",
       },
       {
         id: 3,
@@ -103,6 +124,8 @@ const categories: Category[] = [
         price: 15,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Eyelash extensions",
       },
       {
         id: 4,
@@ -110,6 +133,8 @@ const categories: Category[] = [
         price: 25,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Eyelash extensions",
       },
     ],
   },
@@ -124,6 +149,8 @@ const categories: Category[] = [
         price: 20,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Spa",
       },
       {
         id: 2,
@@ -131,6 +158,8 @@ const categories: Category[] = [
         price: 30,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Spa",
       },
       {
         id: 3,
@@ -138,6 +167,8 @@ const categories: Category[] = [
         price: 15,
         duration: 30,
         timeUnit: "minutes",
+        description: "",
+        type: "Spa",
       },
       {
         id: 4,
@@ -145,6 +176,8 @@ const categories: Category[] = [
         price: 25,
         duration: 45,
         timeUnit: "minutes",
+        description: "",
+        type: "Spa",
       },
     ],
   },
@@ -301,7 +334,7 @@ export default function ServicePage() {
       </div>
 
       {/* MAIN */}
-      <div className="p-10 flex flex-col gap-8">
+      <div className="p-10 flex flex-col gap-8 w-full">
         <div className="text-center">
           <h3 className="text-pink text-lg font-normal mb-3 ls-51 uppercase">
             Services
@@ -321,18 +354,12 @@ export default function ServicePage() {
               className="p-4 ring ring-gray-500 rounded-xl "
               key={service.id}
             >
-              <Image
-                src={service.image || "/assets/Banner/thumnail.jpg"}
-                alt={service.name}
-                width={400}
-                height={200}
-                className="rounded-xl mx-auto h-[200px]"
-              />
-              <div className="mt-5">
+              <span className="float-end rounded-md px-4 py-1 -my-3 -mx-3 text-[#ba9367] font-bold">{service.type}</span>
+              <div className="">
                 <h4 className="text-xl font-semibold text-lightgrey">
                   {service.name}
                 </h4>
-                <div className="flex items-center justify-between mt-3">
+                <div className="flex items-center justify-between mt-4">
                   <p className="text-lg font-normal text-black text-opacity-50">
                     {service.duration} {service.timeUnit}
                   </p>
