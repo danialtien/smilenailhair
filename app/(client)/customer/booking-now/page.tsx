@@ -67,7 +67,7 @@ export default function BookingPage() {
       location: "HCM",
       appointmentDate: new Date(),
       appointmentTime: new Date(),
-      technician: "Ngoc Trinh",
+      technician: "John Doe",
       services: "Fingers Nail",
       note: "No content",
     },
