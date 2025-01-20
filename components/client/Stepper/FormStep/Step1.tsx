@@ -42,7 +42,7 @@ import {
 export default function Step1() {
   const { handleNextStep, handlePrevStep } = useMultistepFormContext();
 
-  // Form steup
+  // Form setup
   const { formData, updateFormData } = useMultiFormContext();
   const form = useForm<InputBookingServiceData>({
     resolver: zodResolver(
