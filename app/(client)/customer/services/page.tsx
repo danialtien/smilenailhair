@@ -24,34 +24,53 @@ export default function ServicePage() {
   ]);
 
   function updateCheckedId(id: number) {
-    checkedCatId?.map((item) => {
-      if (item.id === id) {
-        setCheckedCatId(checkedCatId.filter((item) => item.id !== id));
+    setCheckedCatId((prevCheckedCatId) => {
+      if (id === 0) {
+        // If "All" is selected, remove all other ids
+        return [{ id: 0 }];
       } else {
-        setCheckedCatId([...checkedCatId, { id }]);
+        // If any other id is selected, remove "All" and toggle the selected id
+        const newCheckedCatId = prevCheckedCatId.filter(
+          (item) => item.id !== 0
+        );
+        if (newCheckedCatId.some((item) => item.id === id)) {
+          return newCheckedCatId.filter((item) => item.id !== id);
+        } else {
+          return [...newCheckedCatId, { id }];
+        }
       }
     });
+    // checkedCatId?.map((item) => {
+    //   if (item.id === id) {
+    //     setCheckedCatId(checkedCatId.filter((item) => item.id !== id));
+    //   } else {
+    //     setCheckedCatId([...checkedCatId, { id }]);
+    //   }
+    // });
   }
+
   function filterServices() {
-    var filteredServices = [];
+    let filteredServices = [];
 
     if (checkedCatId[0].id === 0) {
-      return CATEGORIES.flatMap((category) => category.services);
+      filteredServices = CATEGORIES.flatMap((category) => category.services);
     }
-
-    filteredServices = CATEGORIES.filter((category) =>
-      checkedCatId.some((checked) => checked.id === category.id),
-    ).flatMap((category) => category.services);
-
-    if (seachQuery !== "") {
-      filteredServices = CATEGORIES.flatMap(
-        (category) => category.services,
-      ).filter((service) =>
-        service.name.toLowerCase().includes(seachQuery.toLowerCase()),
+    else if (seachQuery !== "") {
+      filteredServices = CATEGORIES.flatMap((category) => category.services).filter(
+        (service) =>
+          service.name.toLowerCase().includes(seachQuery.toLowerCase())
       );
     }
+    else {
+    filteredServices = CATEGORIES.filter((category) =>
+      checkedCatId.some((checked) => checked.id === category.id)
+    ).flatMap((category) => category.services);
+  }
 
-    return filteredServices;
+    return filteredServices.map(service => ({
+      ...service,
+      uniqueKey: `${service.id}-${Math.random()}` // Generate a unique key
+    }));
   }
 
   return (
@@ -63,8 +82,12 @@ export default function ServicePage() {
             Our services
           </h1>
           <ul>
-            <li key={0} className="flex items-center gap-2 p-2">
-              <Checkbox id="0" checked={checkedCatId.some((x) => x.id === 0)} />
+            <li className="flex items-center gap-2 p-2">
+              <Checkbox
+                id="all"
+                checked={checkedCatId.some((x) => x.id === 0)}
+                onClick={() => updateCheckedId(0)}
+              />
               <label
                 htmlFor="all"
                 className="text-sm font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -76,6 +99,7 @@ export default function ServicePage() {
               <li key={category.id} className="flex items-center gap-2 p-2">
                 <Checkbox
                   id={category.id.toString()}
+                  checked={checkedCatId.some((x) => x.id === category.id)}
                   onClick={() => updateCheckedId(category.id)}
                 />
                 <label
@@ -107,7 +131,7 @@ export default function ServicePage() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10">
           {filterServices().map((service) => (
-            <ServiceOptions key={service.id} data={service} />
+            <ServiceOptions key={service.uniqueKey} data={service} />
           ))}
         </div>
       </div>
