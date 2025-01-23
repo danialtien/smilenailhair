@@ -3,8 +3,10 @@
 import SearchBar from "@/components/client/SearchBar/SearchBar";
 import ServiceInfoBooking from "@/components/client/Services/ServiceInfoBooking";
 import { Checkbox } from "@/components/ui/checkbox";
-import { categories } from "@/model/data";
 import { useState } from "react";
+
+import CATEGORIES from "@/model/data/categories.json";
+import ServiceOptions from "@/components/client/Services/ServiceOptions";
 
 interface checkCatIdProps {
   id: number;
@@ -33,22 +35,20 @@ export default function ServicePage() {
   function filterServices() {
     var filteredServices = [];
 
-    if (checkedCatId.length === 1 && checkedCatId[0].id === 0) {
-      return categories.flatMap((category) => category.services);
+    if (checkedCatId[0].id === 0) {
+      return CATEGORIES.flatMap((category) => category.services);
     }
 
-    filteredServices = categories
-      .filter((category) =>
-        checkedCatId.some((checked) => checked.id === category.id),
-      )
-      .flatMap((category) => category.services);
+    filteredServices = CATEGORIES.filter((category) =>
+      checkedCatId.some((checked) => checked.id === category.id),
+    ).flatMap((category) => category.services);
 
     if (seachQuery !== "") {
-      filteredServices = categories
-        .flatMap((category) => category.services)
-        .filter((service) =>
-          service.name.toLowerCase().includes(seachQuery.toLowerCase()),
-        );
+      filteredServices = CATEGORIES.flatMap(
+        (category) => category.services,
+      ).filter((service) =>
+        service.name.toLowerCase().includes(seachQuery.toLowerCase()),
+      );
     }
 
     return filteredServices;
@@ -72,7 +72,7 @@ export default function ServicePage() {
                 All
               </label>
             </li>
-            {categories.map((category, i) => (
+            {CATEGORIES.map((category) => (
               <li key={category.id} className="flex items-center gap-2 p-2">
                 <Checkbox
                   id={category.id.toString()}
@@ -106,27 +106,8 @@ export default function ServicePage() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10">
-          {filterServices().map((service, i) => (
-            <div
-              className="p-4 ring ring-gray-500 rounded-xl "
-              key={service.id}
-            >
-              <span className="float-end rounded-md px-4 py-1 -my-3 -mx-3 text-[#ba9367] font-bold">{service.type}</span>
-              <div className="">
-                <h4 className="text-xl font-semibold text-lightgrey">
-                  {service.name}
-                </h4>
-                <div className="flex items-center justify-between mt-4">
-                  <p className="text-lg font-normal text-black text-opacity-50">
-                    {service.duration} {service.timeUnit}
-                  </p>
-                  <p className="text-lg font-xl font-semibold text-black text-opacity-50">
-                    {service.price}$
-                  </p>
-                </div>
-                <p className="text-sm text-gray-400">{service.description}</p>
-              </div>
-            </div>
+          {filterServices().map((service) => (
+            <ServiceOptions key={service.id} data={service} />
           ))}
         </div>
       </div>
