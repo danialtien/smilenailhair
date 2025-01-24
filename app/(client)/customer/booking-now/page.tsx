@@ -33,6 +33,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { PhoneInput } from "@/components/ui/phone-input";
+
+import TECHNICIANS from "@/model/data/technician.json";
+import LOCATES from "@/model/data/locates.json";
+import { parsePhoneNumber } from "react-phone-number-input";
+import { IncrementorInput } from "@/components/ui/incrementor";
 
 const bookingSchema = z.object({
   id: z.number(),
@@ -40,14 +46,14 @@ const bookingSchema = z.object({
   email: z.string().email(),
   fullName: z.string().min(5).max(100),
   numOfAttending: z.number().max(5),
-  location: z.string(),
+  locationId: z.number(),
   appointmentDate: z.date({
     required_error: "An appointment date is required",
   }),
   appointmentTime: z.date({
     required_error: "An appointment time is required",
   }),
-  technician: z.string(),
+  technicianId: z.number(),
   services: z.string(),
   note: z.string().max(255),
 });
@@ -64,10 +70,10 @@ export default function BookingPage() {
       email: "truongdeptrai@gmail.com",
       fullName: "Truong Dep Trai",
       numOfAttending: 1,
-      location: "HCM",
+      locationId: LOCATES[0].id,
       appointmentDate: new Date(),
       appointmentTime: new Date(),
-      technician: "John Doe",
+      technicianId: TECHNICIANS[0].id,
       services: "Fingers Nail",
       note: "No content",
     },
@@ -108,35 +114,67 @@ export default function BookingPage() {
               </CardDescription>
             </CardHeader>
             <Form {...form}>
-              <FormDescription className="mx-5 text-pink-600 font-semibold border-b border-pink-600">
-                Please enter some information below
-              </FormDescription>
-              <form onSubmit={form.handleSubmit(onSubmit)}>
-                <CardContent className="flex items-center gap-5">
-                  <FormField
-                    control={form.control}
-                    name="phoneNumber"
-                    render={({ field }) => (
-                      <FormItem className="space-y-1 w-full">
-                        <FormLabel className="text-base text-black">
-                          Phone number
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            type="text"
-                            {...field}
-                            className="md:text-lg h-10"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
+                <FormDescription className="mx-5 text-pink-600 text-sm font-semibold border-b border-pink-600">
+                  Customer infomation
+                </FormDescription>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center gap-5">
+                    <FormField
+                      control={form.control}
+                      name="phoneNumber"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2 w-full">
+                          <FormLabel className="text-base text-black">
+                            Phone number
+                          </FormLabel>
+                          <FormControl>
+                            <PhoneInput
+                              className="h-10"
+                              value={parsePhoneNumber(field.value, "VN")?.format("E.164")}
+                              defaultCountry="VN"
+                              onChange={(value) =>
+                                form.setValue("phoneNumber", value)
+                              }
+                            />
+                            {/* <Input
+                              type="text"
+                              {...field}
+                              className="md:text-lg h-10"
+                            /> */}
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem className="space-y-2 w-full">
+                          <FormLabel className="text-base text-black">
+                            Email
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              type="email"
+                              {...field}
+                              className="md:text-lg h-10"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                   <FormField
                     control={form.control}
                     name="fullName"
                     render={({ field }) => (
-                      <FormItem className="space-y-1 w-full">
+                      <FormItem className="space-y-2">
                         <FormLabel className="text-base text-black">
                           Full Name
                         </FormLabel>
@@ -151,41 +189,21 @@ export default function BookingPage() {
                       </FormItem>
                     )}
                   />
-                </CardContent>
-                <CardContent className="space-y-2">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="space-y-1 w-full">
-                        <FormLabel className="text-base text-black">
-                          Email
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            {...field}
-                            className="md:text-lg h-10"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
                   <FormField
                     control={form.control}
                     name="numOfAttending"
                     render={({ field }) => (
-                      <FormItem className="space-y-1 w-full">
+                      <FormItem className="space-y-2">
                         <FormLabel className="text-base text-black">
                           Attending Number
                         </FormLabel>
                         <FormControl>
-                          <Input
+                          <IncrementorInput min={0} max={10} step={1} {...field} />
+                          {/* <Input
                             type="number"
                             {...field}
                             className="md:text-lg h-10"
-                          />
+                          /> */}
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -193,15 +211,17 @@ export default function BookingPage() {
                   />
                   <FormField
                     control={form.control}
-                    name="location"
+                    name="locationId"
                     render={({ field }) => (
-                      <FormItem className="space-y-1">
+                      <FormItem className="space-y-2">
                         <FormLabel className="text-base text-black">
                           Choose location
                         </FormLabel>
                         <Select
-                          // onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          defaultValue={field.value.toString()}
+                          onValueChange={(value) =>
+                            form.setValue("locationId", parseInt(value))
+                          }
                         >
                           <FormControl>
                             <SelectTrigger className="rounded p-2">
@@ -209,8 +229,14 @@ export default function BookingPage() {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent position="popper">
-                            <SelectItem value="HCM">Ho Chi Minh</SelectItem>
-                            <SelectItem value="HN">Ha Noi</SelectItem>
+                            {LOCATES.map((item) => (
+                              <SelectItem
+                                key={item.id}
+                                value={item.id.toString()}
+                              >
+                                {item.address}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -219,15 +245,17 @@ export default function BookingPage() {
                   />
                   <FormField
                     control={form.control}
-                    name="technician"
+                    name="technicianId"
                     render={({ field }) => (
-                      <FormItem className="space-y-1">
+                      <FormItem className="space-y-2">
                         <FormLabel className="text-base text-black">
                           Technician
                         </FormLabel>
                         <Select
-                          // onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          defaultValue={field.value.toString()}
+                          onValueChange={(value) =>
+                            form.setValue("technicianId", parseInt(value))
+                          }
                         >
                           <FormControl>
                             <SelectTrigger className="rounded p-2">
@@ -235,64 +263,14 @@ export default function BookingPage() {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent position="popper">
-                            <SelectItem value="Ngoc Trinh">
-                              Ngoc Trinh
-                            </SelectItem>
-                            <SelectItem value="Ngoc Linh">Ngoc Linh</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="location"
-                    render={({ field }) => (
-                      <FormItem className="space-y-1">
-                        <FormLabel className="text-base text-black">
-                          Choose location
-                        </FormLabel>
-                        <Select
-                          // onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger className="rounded p-2">
-                              <SelectValue placeholder="Please select location" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent position="popper">
-                            <SelectItem value="HCM">Ho Chi Minh</SelectItem>
-                            <SelectItem value="HN">Ha Noi</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="technician"
-                    render={({ field }) => (
-                      <FormItem className="space-y-1">
-                        <FormLabel className="text-base text-black">
-                          Technician
-                        </FormLabel>
-                        <Select
-                          // onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger className="rounded p-2">
-                              <SelectValue placeholder="Please select technician" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent position="popper">
-                            <SelectItem value="Ngoc Trinh">
-                              Ngoc Trinh
-                            </SelectItem>
-                            <SelectItem value="Ngoc Linh">Ngoc Linh</SelectItem>
+                            {TECHNICIANS.map((item) => (
+                              <SelectItem
+                                key={item.id}
+                                value={item.id.toString()}
+                              >
+                                {item.name}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -300,56 +278,23 @@ export default function BookingPage() {
                     )}
                   />
                 </CardContent>
-                <CardContent className="space-y-2">
+                <FormDescription className="mx-5 text-pink-600 text-sm font-semibold border-b border-pink-600">
+                  Service infomation
+                </FormDescription>
+                <CardContent className="space-y-4">
                   <FormField
                     control={form.control}
-                    name="email"
+                    name="locationId"
                     render={({ field }) => (
-                      <FormItem className="space-y-1 w-full">
-                        <FormLabel className="text-base text-black">
-                          Email
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            {...field}
-                            className="md:text-lg h-10"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="numOfAttending"
-                    render={({ field }) => (
-                      <FormItem className="space-y-1 w-full">
-                        <FormLabel className="text-base text-black">
-                          Attending Number
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            type="number"
-                            {...field}
-                            className="md:text-lg h-10"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="location"
-                    render={({ field }) => (
-                      <FormItem className="space-y-1">
+                      <FormItem className="space-y-2">
                         <FormLabel className="text-base text-black">
                           Choose location
                         </FormLabel>
                         <Select
-                          // onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          defaultValue={field.value.toString()}
+                          onValueChange={(value) =>
+                            form.setValue("locationId", parseInt(value))
+                          }
                         >
                           <FormControl>
                             <SelectTrigger className="rounded p-2">
@@ -357,8 +302,14 @@ export default function BookingPage() {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent position="popper">
-                            <SelectItem value="HCM">Ho Chi Minh</SelectItem>
-                            <SelectItem value="HN">Ha Noi</SelectItem>
+                            {LOCATES.map((item) => (
+                              <SelectItem
+                                key={item.id}
+                                value={item.id.toString()}
+                              >
+                                {item.address}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -367,15 +318,17 @@ export default function BookingPage() {
                   />
                   <FormField
                     control={form.control}
-                    name="technician"
+                    name="technicianId"
                     render={({ field }) => (
-                      <FormItem className="space-y-1">
+                      <FormItem className="space-y-2">
                         <FormLabel className="text-base text-black">
                           Technician
                         </FormLabel>
                         <Select
-                          // onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          defaultValue={field.value.toString()}
+                          onValueChange={(value) =>
+                            form.setValue("technicianId", parseInt(value))
+                          }
                         >
                           <FormControl>
                             <SelectTrigger className="rounded p-2">
@@ -383,10 +336,14 @@ export default function BookingPage() {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent position="popper">
-                            <SelectItem value="Ngoc Trinh">
-                              Ngoc Trinh
-                            </SelectItem>
-                            <SelectItem value="Ngoc Linh">Ngoc Linh</SelectItem>
+                            {TECHNICIANS.map((item) => (
+                              <SelectItem
+                                key={item.id}
+                                value={item.id.toString()}
+                              >
+                                {item.name}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                         <FormMessage />
