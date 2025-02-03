@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,8 +38,11 @@ import { Button } from "@/components/ui/button";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { IncrementorInput } from "@/components/ui/incrementor";
 
-import TECHNICIANS from "@/model/data/technician.json";
+import { Service } from "@/model/Service";
+import CATEGORIES from "@/model/data/categories.json";
 import LOCATES from "@/model/data/locates.json";
+import TECHNICIANS from "@/model/data/technician.json";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const bookingSchema = z.object({
   id: z.number(),
@@ -55,11 +58,17 @@ const bookingSchema = z.object({
     required_error: "An appointment time is required",
   }),
   technicianId: z.number(),
-  services: z.string(),
+  services: z.array(z.number()).refine((value) => value.some((item) => item), {
+    message: "You have to choose at least one option",
+  }),
   note: z.string().max(255),
 });
 
 type TypeOfBooking = z.infer<typeof bookingSchema>;
+
+interface serviceProps {
+  service: Service;
+}
 
 export default function BookingPage() {
   // Form setup
@@ -75,10 +84,15 @@ export default function BookingPage() {
       appointmentDate: new Date(),
       appointmentTime: new Date(),
       technicianId: TECHNICIANS[0].id,
-      services: "Fingers Nail",
+      services: [1, 2],
       note: "No content",
     },
   });
+  const [services, setServices] = useState<Service[]>();
+
+  useEffect(() => {
+    setServices(CATEGORIES.flatMap((category) => category.services));
+  }, []);
 
   function onSubmit(data: Partial<TypeOfBooking>) {
     toast({
@@ -135,7 +149,10 @@ export default function BookingPage() {
                           <FormControl>
                             <PhoneInput
                               className="h-10"
-                              value={parsePhoneNumber(field.value, "VN")?.format("E.164")}
+                              value={parsePhoneNumber(
+                                field.value,
+                                "VN",
+                              )?.format("E.164")}
                               defaultCountry="VN"
                               onChange={(value) =>
                                 form.setValue("phoneNumber", value)
@@ -199,7 +216,12 @@ export default function BookingPage() {
                           Attending Number
                         </FormLabel>
                         <FormControl>
-                          <IncrementorInput min={1} max={5} step={1} {...field} />
+                          <IncrementorInput
+                            min={1}
+                            max={5}
+                            step={1}
+                            {...field}
+                          />
                           {/* <Input
                             type="number"
                             {...field}
@@ -279,6 +301,72 @@ export default function BookingPage() {
                             ))}
                           </SelectContent>
                         </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="services"
+                    render={({ field }) => (
+                      <FormItem className="space-y-2">
+                        <FormLabel className="text-base text-black">
+                          Choose services
+                        </FormLabel>
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-10">
+                          {services?.map((service, index) => (
+                            <FormField
+                              key={index}
+                              control={form.control}
+                              name="services"
+                              render={({ field }) => (
+                                <FormItem key={index}>
+                                  <div className="p-4 ring ring-gray-500 rounded-xl hover:bg-slate-100">
+                                    <span className="float-end rounded-md px-4 py-1 -my-3 -mx-3 text-[#ba9367] font-bold">
+                                      {service.type == null && "Special"}
+                                    </span>
+                                    <div>
+                                      <h4 className="text-xl font-semibold text-lightgrey">
+                                        {service.name}
+                                      </h4>
+                                      <div className="flex items-center justify-between mt-4">
+                                        <FormControl>
+                                          <Checkbox
+                                            checked={field.value?.includes(
+                                              service.id,
+                                            )}
+                                            onCheckedChange={(checked) => {
+                                              return checked
+                                                ? field.onChange([
+                                                    ...field.value,
+                                                    service.id,
+                                                  ])
+                                                : field.onChange(
+                                                    field.value?.filter(
+                                                      (value) =>
+                                                        value !== service.id,
+                                                    ),
+                                                  );
+                                            }}
+                                          />
+                                        </FormControl>
+                                        <p className="text-lg font-normal text-black text-opacity-50">
+                                          {service.duration} {service.timeUnit}
+                                        </p>
+                                        <p className="text-lg font-semibold text-black text-opacity-50">
+                                          {service.price}$
+                                        </p>
+                                      </div>
+                                      <p className="text-sm text-gray-400">
+                                        {service.description}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </FormItem>
+                              )}
+                            />
+                          ))}
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
