@@ -1,21 +1,20 @@
-import * as React from 'react';
+import { forwardRef, InputHTMLAttributes, useImperativeHandle, useRef, useState } from 'react';
+import { PlusCircle, MinusCircle } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
-import { PlusCircle, MinusCircle } from 'lucide-react';
-
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends InputHTMLAttributes<HTMLInputElement> {
   symbol?: string;
 }
 
-const IncrementorInput = React.forwardRef<HTMLInputElement, InputProps>(
+const IncrementorInput = forwardRef<HTMLInputElement, InputProps>(
   ({ symbol, className, ...props }, ref) => {
-    const [hitMax, setHitMax] = React.useState(false);
-    const [hitMin, setHitMin] = React.useState(false);
-    const incrementInput = React.useRef<HTMLInputElement>(null);
+    const [hitMax, setHitMax] = useState(false);
+    const [hitMin, setHitMin] = useState(false);
+    const incrementInput = useRef<HTMLInputElement>(null);
 
-    React.useImperativeHandle(ref, () => incrementInput.current!, []);
+    useImperativeHandle(ref, () => incrementInput.current!, []);
 
     const increment = () => {
       incrementInput.current?.stepUp();
@@ -48,14 +47,14 @@ const IncrementorInput = React.forwardRef<HTMLInputElement, InputProps>(
           aria-label="increase"
           className="group text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <PlusCircle className="h-4 w-4 group-hover:text-gray-900" />
+          <PlusCircle className="h-6 w-6 group-hover:text-gray-900" />
         </button>
 
         <div className="relative">
           <input
             type="number"
             className={cn(
-              'no-steps w-fit border-0 bg-transparent p-0 pr-4 text-center',
+              'no-steps w-fit border-0 bg-transparent p-0 pr-2 text-center',
               className
             )}
             ref={incrementInput}
@@ -71,7 +70,7 @@ const IncrementorInput = React.forwardRef<HTMLInputElement, InputProps>(
           aria-label="decrease"
           className="group text-gray-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <MinusCircle className="h-4 w-4 group-hover:text-gray-800" />
+          <MinusCircle className="h-6 w-6 group-hover:text-gray-800" />
         </button>
       </div>
     );

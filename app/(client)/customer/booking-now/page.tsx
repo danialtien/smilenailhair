@@ -5,6 +5,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/hooks/use-toast";
+import { parsePhoneNumber } from "react-phone-number-input";
+import { MdCalendarMonth } from "react-icons/md";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
@@ -34,11 +36,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { PhoneInput } from "@/components/ui/phone-input";
+import { IncrementorInput } from "@/components/ui/incrementor";
 
 import TECHNICIANS from "@/model/data/technician.json";
 import LOCATES from "@/model/data/locates.json";
-import { parsePhoneNumber } from "react-phone-number-input";
-import { IncrementorInput } from "@/components/ui/incrementor";
 
 const bookingSchema = z.object({
   id: z.number(),
@@ -193,86 +194,18 @@ export default function BookingPage() {
                     control={form.control}
                     name="numOfAttending"
                     render={({ field }) => (
-                      <FormItem className="space-y-2">
+                      <FormItem className="flex items-center gap-5">
                         <FormLabel className="text-base text-black">
                           Attending Number
                         </FormLabel>
                         <FormControl>
-                          <IncrementorInput min={0} max={10} step={1} {...field} />
+                          <IncrementorInput min={1} max={5} step={1} {...field} />
                           {/* <Input
                             type="number"
                             {...field}
                             className="md:text-lg h-10"
                           /> */}
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="locationId"
-                    render={({ field }) => (
-                      <FormItem className="space-y-2">
-                        <FormLabel className="text-base text-black">
-                          Choose location
-                        </FormLabel>
-                        <Select
-                          defaultValue={field.value.toString()}
-                          onValueChange={(value) =>
-                            form.setValue("locationId", parseInt(value))
-                          }
-                        >
-                          <FormControl>
-                            <SelectTrigger className="rounded p-2">
-                              <SelectValue placeholder="Please select location" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent position="popper">
-                            {LOCATES.map((item) => (
-                              <SelectItem
-                                key={item.id}
-                                value={item.id.toString()}
-                              >
-                                {item.address}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="technicianId"
-                    render={({ field }) => (
-                      <FormItem className="space-y-2">
-                        <FormLabel className="text-base text-black">
-                          Technician
-                        </FormLabel>
-                        <Select
-                          defaultValue={field.value.toString()}
-                          onValueChange={(value) =>
-                            form.setValue("technicianId", parseInt(value))
-                          }
-                        >
-                          <FormControl>
-                            <SelectTrigger className="rounded p-2">
-                              <SelectValue placeholder="Please select technician" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent position="popper">
-                            {TECHNICIANS.map((item) => (
-                              <SelectItem
-                                key={item.id}
-                                value={item.id.toString()}
-                              >
-                                {item.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -351,9 +284,10 @@ export default function BookingPage() {
                     )}
                   />
                 </CardContent>
-                <CardFooter className="justify-end">
-                  <Button className="text-lg text-pink-600 bg-white h-10 border border-pink-600 hover:text-white hover:bg-pink-500">
-                    Submit
+                <CardFooter className="justify-center">
+                  <Button className="text-xl text-pink-600 bg-white h-12 w-96 border border-pink-600 hover:text-white hover:bg-pink-500">
+                    <MdCalendarMonth className="!h-6 !w-6" />
+                    Book Appointment
                   </Button>
                 </CardFooter>
               </form>
